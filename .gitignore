@@ -5,7 +5,8 @@ __init__.py
 **/__init__.py
 __pycache__/
 staticfiles
-files
+files/photos/products/*
 !files/photos/products/init
+files/photos/requests/*
 !files/photos/requests/init
 persistencebot
