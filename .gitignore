@@ -1,0 +1,11 @@
+.env
+db.sqlite3
+app/migrations
+__init__.py
+**/__init__.py
+__pycache__/
+staticfiles
+files
+!files/photos/products/init
+!files/photos/requests/init
+persistencebot
