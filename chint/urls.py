@@ -15,13 +15,48 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView
 
 from app.views.botwebhook import bot_webhook
+from app.views import main, product, request, user
 
 from config import TELEGRAM_BOT_API_TOKEN, ENVIRONMENT
 
 
 urlpatterns = [
+    #admin
     path('xiidot1303/', admin.site.urls),
     path(TELEGRAM_BOT_API_TOKEN, bot_webhook),
-]
+
+    # auth
+    path('accounts/login/', LoginView.as_view()),
+    path('changepassword/', PasswordChangeView.as_view(template_name = 'registration/change_password.html'), name='editpassword'),
+    path('changepassword/done/', PasswordChangeDoneView.as_view(template_name = 'registration/afterchanging.html'), name='password_change_done'),
+    # path('profile', change_profile, name = "change_profile"),
+    path('logout/', LogoutView.as_view(), name='logout'),
+
+    # main
+    path('', request.request_list, name='main_menu'),
+
+    # get file
+    path('files/<str:folder>/<str:subfolder>/<str:file>/', main.get_photos, name='get_photo'),
+
+
+
+    # product
+    path('product/list', product.product_list, name='product_list'),
+    path('product/create', product.ProductCreateView.as_view(), name='product_create'),
+    path('product/update/<int:pk>/', product.ProductEditView.as_view(), name='product_update'),
+    path('product/delete/<int:pk>/', product.product_delete, name='product_delete'),
+
+    # request
+    path('request/list', request.request_list, name='request_list'),
+    path('request/change_status/<int:pk>/<str:status>/', request.request_change_status, name='request_change_status'),
+
+    # user
+    path('user/list', user.user_list, name='user_list'),
+    path('user/history/<int:user_pk>/', user.user_history, name='user_history'),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

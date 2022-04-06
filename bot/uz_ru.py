@@ -5,7 +5,7 @@ lang_dict = {
 
     'select lang': [""" Tilni tanlang """, """Выберите язык бота """],
     
-    'type name': ["""Ismingizni kiriting """, """Введите ваше имя """],
+    'type name': ["""Ism-sharifingizni (FIO) kiriting""", """Введите ваше ФИО"""],
     
     'send number': ["""Telefon raqamingizni yuboring """, """Оставьте свой номер телефона """],
 
@@ -49,12 +49,32 @@ lang_dict = {
     
     'phone number': ["""📞 Telefon raqam""", """📞 Номер телефона"""],
     
+    'get points': ["""Ball to'plash 🔢""", """Получить баллы 🔢"""],
+    
+    'select products': ["""Katalogdan tovarni tanlang""", """Выберите товар из каталога"""],
+    
+    'title': ["""Nom""", """Название"""],
+
+    'point': ["""Ball""", """Баллы"""],
+    
+    'type amount of products': ["""Sotib olgan tovarlaringiz sonini kiriting""", """Введите количество купленных товаров"""],
+    
+    'incorrect value': ["""⚠️ Noto'g'ri qiymat ⚠️""", """⚠️ Неверное значение ⚠️"""],
+    
+    'send photo': ["""Tasdiqlash uchun rasm jo'nating""", """Отправьте фото для подтверждения"""],
+
+    'completed request': ["""Rahmat! Sizning so'rovingiz qabul qilindi va tez orada ko'rib chiqiladi""", 
+        """Спасибо! Ваша заявка принята и будет опубликована после модерации"""],
+    
+    'info': ["""Aksiya haqida ℹ️""", """Информация об акции ℹ️"""],
+    
+    'contact': ["""Aloqa ☎️""", """Контакты ☎️"""],
+
     '': ["""""", """"""],
-    
+
     '': ["""""", """"""],
-    
+
     '': ["""""", """"""],
-    
-    
+
 
 }

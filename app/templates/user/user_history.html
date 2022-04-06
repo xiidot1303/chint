@@ -1,0 +1,120 @@
+{% extends 'layout/basic.html' %}
+
+{% load static %}
+{% load functions %}
+{% load index %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'assets/css/my.css' %}">  
+{% endblock %}
+
+
+{% block title %}
+Запросы
+{% endblock %}
+
+{% block main %}
+
+<h4 class="font-weight-bold" style="margin-bottom: 30px;">{{ user }} - Одобренные запросы</h4>
+<table  class="table" >
+    <thead>
+       <tr>
+          <th>№</th>
+          <th>Товар</th>
+          <th>Количество</th>
+          <th>Фото</th>
+          <th>Баллы</th>
+       </tr>
+    </thead>
+    <tbody>
+        {% for l in list %}
+       <tr>
+            <td>{{ forloop.counter }}</td>
+
+            
+            <td>
+                <a class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);" onclick="create_card({{ l.product|text_maker }}, '/files/{{ l.product.photo }}')" role="button"  data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-file-alt"></i></a>
+               
+            </td>
+            
+            <td>{{ l.amount }}</td>
+            <td><a href="/files/{{ l.photo }}" target="_blank">
+                <img class="product_list_img" src="/files/{{ l.photo }}" alt="">
+            </a></td>
+            <td>{{ l.point }}</td>
+            
+
+
+       </tr>
+       {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block script %}
+<script>
+
+function create_card(answers, photo) {
+   var content = document.getElementsByClassName("content-page")[0];
+   var parent = document.getElementsByClassName("col-lg-12")[0];
+
+   var grey = document.createElement("div");
+   grey.setAttribute("class", "grey");
+   grey.addEventListener("click", remove)
+
+   var card_content = document.createElement("div");
+   card_content.setAttribute("class", "card-content")
+
+   var card_columns = document.createElement("div");
+   card_columns.setAttribute("class", "card-columns answer_card");
+   
+   function remove() {
+      var parent = document.getElementsByClassName("col-lg-12")[0];
+      var card_columns = document.getElementsByClassName("card-content")[0];
+      parent.removeChild(card_columns);
+
+      var content = document.getElementsByClassName("content-page")[0];
+      var grey = document.getElementsByClassName("grey")[0];
+      content.removeChild(grey);
+   }
+
+   
+   var x = document.createElement("div");
+   x.setAttribute("class", "x");
+   x.addEventListener("click", remove);
+   i = document.createElement("i");
+   i.setAttribute("class", "far fa-circle i");
+   x.appendChild(i);
+
+
+   card = document.createElement("div");
+   card.setAttribute("class", "card");
+
+   img = document.createElement("img");
+   img.setAttribute("class", "card-img-top");
+   img.setAttribute("src", photo);
+
+   card_body = document.createElement("div");
+   card_body.setAttribute("class", "card-body");
+
+   for (var i = 0; i < answers.length; i++) {
+      var p = document.createElement("p");
+      p.setAttribute("class", "card-text");
+      text = document.createTextNode(answers[i]);
+      p.appendChild(text);
+      card_body.appendChild(p);
+   }
+
+   card.appendChild(img);
+   card.appendChild(card_body);
+   card_columns.appendChild(card);
+   // card_columns.appendChild(x);
+   card_content.appendChild(card_columns)
+   parent.appendChild(card_content);
+   content.appendChild(grey);
+}
+   
+</script>
+{% endblock %}
+
+
+

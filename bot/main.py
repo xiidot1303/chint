@@ -17,3 +17,16 @@ def start(update, context):
 def settings(update, context):
     make_button_settings(update, context)
     return ALL_SETTINGS
+
+def get_points(update, context):
+    
+    make_button_products(update, context)
+    return SELECT_PRODUCT
+
+def info(update, context):
+    obj = About.objects.get(pk=1)
+    update.message.reply_text(obj.action)
+
+def contact(update, context):   
+    obj = About.objects.get(pk=1)
+    update.message.reply_text(obj.contact)

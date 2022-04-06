@@ -21,6 +21,8 @@ class Product(models.Model):
     photo = models.FileField(upload_to='photos/products', null=True, blank=True)
     point = models.FloatField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.title
 
 class Request(models.Model): # to get points
     user = models.ForeignKey('Bot_user', null=True, blank=False, on_delete=models.PROTECT)
@@ -30,3 +32,7 @@ class Request(models.Model): # to get points
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
     
+
+class About(models.Model):
+    action = models.TextField(null=True, blank=True, max_length=500)
+    contact = models.TextField(null=True, blank=True, max_length=500)

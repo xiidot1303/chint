@@ -6,7 +6,7 @@ import os
 from config import TELEGRAM_BOT_API_TOKEN, ENVIRONMENT
 import requests
 
-from bot import login, main, settings
+from bot import login, main, settings, get_points
 from bot.conversationList import *
 from bot.uz_ru import lang_dict
 
@@ -53,6 +53,25 @@ settings_handler = ConversationHandler(
 )
 
 
+get_points_handler = ConversationHandler(
+    entry_points=[MessageHandler(Filters.text(lang_dict['get points']), main.get_points)],
+    states = { 
+        SELECT_PRODUCT: [MessageHandler(Filters.text, get_points.select_product)],
+        CONFIRM_PRODUCT: [MessageHandler(Filters.text(lang_dict['next'] + lang_dict['back']), get_points.confirm_product)],
+        SEND_AMOUNT: [MessageHandler(Filters.text, get_points.send_amount)],
+        SEND_PHOTO: [MessageHandler(Filters.photo, get_points.send_photo), CommandHandler('start', get_points.send_photo),
+            MessageHandler(Filters.text(lang_dict['back']), get_points.send_photo)],
+        
+    },
+    fallbacks=[],
+    name='get_points',
+    persistent=True,
+)
 
+
+dp.add_handler(MessageHandler(Filters.text(lang_dict['info']), main.info))
+dp.add_handler(MessageHandler(Filters.text(lang_dict['contact']), main.contact))
+
+dp.add_handler(get_points_handler)
 dp.add_handler(settings_handler)
 dp.add_handler(login_handler)
