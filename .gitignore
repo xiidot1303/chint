@@ -9,4 +9,6 @@ files/photos/products/*
 !files/photos/products/init
 files/photos/requests/*
 !files/photos/requests/init
+files/about/*
+!files/about/init
 persistencebot
