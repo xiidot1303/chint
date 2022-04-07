@@ -36,7 +36,7 @@ def confirm_product(update, context):
     if answer == get_word('back', update):
         obj = Request.objects.get(user=get_user_by_update(update), status=None)
         obj.delete()
-        make_button_products
+        make_button_products(update, context)
         return SELECT_PRODUCT
     
     if answer == get_word('next', update):
