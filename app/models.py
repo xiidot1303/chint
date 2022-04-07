@@ -35,4 +35,5 @@ class Request(models.Model): # to get points
 
 class About(models.Model):
     action = models.TextField(null=True, blank=True, max_length=500)
+    file = models.FileField(upload_to='about', null=True, blank=True)
     contact = models.TextField(null=True, blank=True, max_length=500)

@@ -27,8 +27,11 @@ def get_points(update, context):
     return SELECT_PRODUCT
 
 def info(update, context):
+    bot = context.bot
     obj = About.objects.get(pk=1)
-    update.message.reply_text(obj.action)
+    file = open('files/{}'.format(str(obj.file)), 'rb')
+    bot.send_document(update.message.chat.id, file)
+    # update.message.reply_text(obj.action)
 
 def contact(update, context):   
     obj = About.objects.get(pk=1)
