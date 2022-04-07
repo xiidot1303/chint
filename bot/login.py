@@ -29,8 +29,9 @@ def select_lang(update, context):
 @is_start_registr
 def send_name(update, context):
     if update.message.text == get_word('back', update):
-        update.message.reply_text('Bot tilini tanlang\n\nВыберите язык бота', reply_markup=ReplyKeyboardMarkup(keyboard=[['UZ 🇺🇿', 'RU 🇷🇺']], resize_keyboard=True))
-        return SELECT_LANG
+        # update.message.reply_text('Bot tilini tanlang\n\nВыберите язык бота', reply_markup=ReplyKeyboardMarkup(keyboard=[['UZ 🇺🇿', 'RU 🇷🇺']], resize_keyboard=True))
+        return         
+        # return SELECT_LANG
 
     obj = Bot_user.objects.get(user_id=update.message.chat.id)
     obj.name=update.message.text

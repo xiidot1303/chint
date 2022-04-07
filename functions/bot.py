@@ -27,7 +27,8 @@ def make_button_settings(update, context):
     except:
         www= 0 # do nothing
     bot = context.bot
-    keyboard=[[get_word('change lang', update)], [get_word('change name', update)], [get_word('change phone number', update)], [get_word('main menu', update)]]
+    # keyboard=[[get_word('change lang', update)], [get_word('change name', update)], [get_word('change phone number', update)], [get_word('main menu', update)]]
+    keyboard=[[get_word('change name', update)], [get_word('change phone number', update)], [get_word('main menu', update)]]
     bot.send_message(update.message.chat.id, get_word('settings desc', update), reply_markup=ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True))
 
 
