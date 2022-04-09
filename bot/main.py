@@ -32,4 +32,4 @@ def info(update, context):
 
 def contact(update, context):   
     obj = About.objects.get(pk=1)
-    update.message.reply_text(obj.contact)
+    update.message.reply_text(obj.contact, parse_mode=telegram.ParseMode.MARKDOWN)
