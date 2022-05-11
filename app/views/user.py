@@ -18,8 +18,15 @@ def user_list(request):
     context = {'users': users}
     return render(request, 'user/list_users.html', context)
 
+@login_required
 def user_history(request, user_pk):
     requests = Request.objects.filter(status = 'conf', user__pk = user_pk)
     user = Bot_user.objects.get(pk=user_pk).name
     context = {'list': requests, 'user': user}
     return render(request, 'user/user_history.html', context)
+
+
+def points_statistic(request):
+    users = Bot_user.objects.all()
+    context = {'users': users}
+    return render(request, 'user/statistic.html', context)
