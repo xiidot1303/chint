@@ -10,6 +10,7 @@ from django.db.models import Count
 from datetime import datetime, timedelta
 from app.models import *
 from app.forms import *
+from django.db.models import Count, Sum, F
 
 
 @login_required
@@ -27,6 +28,8 @@ def user_history(request, user_pk):
 
 
 def points_statistic(request):
-    users = Bot_user.objects.all()
-    context = {'users': users}
+    # users = Bot_user.objects.all()
+    list = Request.objects.values('user__name').annotate(total=Sum(F('point') * F('amount'))).values('user__name', 'user__firstname', 'total')
+
+    context = {'list': list}
     return render(request, 'user/statistic.html', context)
