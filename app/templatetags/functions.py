@@ -29,6 +29,6 @@ def text_maker(obj):
 def overall_points(user):
     points = 0.0
     for r in Request.objects.filter(user=user, status = 'conf'):
-        points += r.point
+        points += r.point * r.amount
 
     return points

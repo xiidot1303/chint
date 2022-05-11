@@ -3,50 +3,166 @@
 {% load functions %}
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/css/black-table.css' %}">
-    <title>Static</title>
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Statistic</title>
+
+<meta name="description" content="V ПРЕМИЯ БРЕНД ГОДА 2021">
+<meta property="og:description" content="V ПРЕМИЯ БРЕНД ГОДА 2021">
+<meta name="keywords" content="V ПРЕМИЯ БРЕНД ГОДА 2021"><meta name="author" content="Создание и продвижение сайтов Life Style">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="manifest" href="https://marketing.uz/brend-goda-2021/themes/dist/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://marketing.uz/brend-goda-2021/themes/dist/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- <link rel="stylesheet" href="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/choices.css"> -->
+<!-- <link rel="stylesheet" href="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/swiper.css"> -->
+<!-- <link rel="stylesheet" href="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/dropzone.css" type="text/css"> -->
+<link rel="stylesheet" href="{% static 'assets/css/statistic.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/statistic-add.css' %}">
+
+  <!-- <link rel="stylesheet" href="{% static 'assets/css/statistic.css' %}"> -->
 </head>
 <body>
-    
-    <h1><span class="blue">&lt;</span>Пользователи<span class="blue">&gt;</span> <span class="yellow">баллы</pan></h1>
+  <div class="wrapper">
+  <!-- ?Подключение Header -->
+ 
+<main class="main">
 
-        <table class="container">
-            <thead>
-                <tr>
-                   <th>№</th>
-                   <!-- <th>ID</th> -->
-                   <th>Имя</th>
-                   <th>Телеграм</th>
-                   <!-- <th>Номер телефона</th> -->
 
-                   <th>Баллы</th>
+        <div class="container" id="dev">
+          <!-- <h2 class="stages__title title title-primary" style="text-align: center;">СТАТИСТИКА ГОЛОСОВАНИЯ</h2> -->
+        
+       <div class="votign-items boxes-3 figure-m-v-20" style="margin-bottom: 100px;">
+             
+          
+                      <figure class="figure">
+              <div class="cap-content"><span>Статистика пользователей</span></div>
 
-                   
-         
-                </tr>
-             </thead>
-             <tbody>
-                 {% for u in users %}
-                <tr>
-                     <td>{{ forloop.counter }}</td>
+              <div class="comlist">
+                                                                        
+                                                                        
+                                        {% for l in list %}
+                                        <div class="item"><span>{{ l.user__name }}</span><span>{{ l.user__firstname }}</span><span>{{ l.total }} баллы</span></div>
+                                        
+                                        {% endfor %}
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                 
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                
+                                                                        
+                                                                        
+                              </div>
+            </figure>
                      
-                     <td>{{ u.name }}</td>
-                     <td>{{ u.firstname }}</td>
-                     
-                     
-                     <td>{{ u|overall_points }}</td>
+  </main>
 
-                     
-                </tr>
-                {% endfor %}
-             </tbody>
-                 </table>
+  
+</div>
+<script async="" src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/tag.js"></script><script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/jquery-3.js"></script>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/mask.js"></script>
 
-    
-</body>
-</html>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/dropzone-min.js"></script>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/validate.js"></script>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/choices.js"></script>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/swiper.js"></script>
+<script src="V%20%D0%9F%D0%A0%D0%95%D0%9C%D0%98%D0%AF%20%D0%91%D0%A0%D0%95%D0%9D%D0%94%20%D0%93%D0%9E%D0%94%D0%90%202021%20-%20Marketing.uz_files/main.js"></script>
+
+<script type="text/javascript">
+const THEME_URL = 'https://marketing.uz/brend-goda-2021/themes/dist';
+
+$(document).ready(function () {
+  Dropzone.autoDiscover = false;
+  $("#dz-upload-image").dropzone({
+      url: '#',
+      maxFiles: 1,
+      maxFilesize: 5,
+      params: { 'action': 'cover' },
+      uploadMultiple: true,
+      parallelUploads: 1,
+      parallelChunkUploads: false,
+      previewsContainer: '#dropZoneItemsImage',
+      previewTemplate: $('#dropZoneItemsTemplateImage').html(),
+      thumbnailWidth:"545",
+      thumbnailHeight:"241",
+      init: function() {
+          this.on("addedfile", file => {
+              count = this.files.length;
+              if (this.files[1]!=null){
+                  this.removeFile(this.files[0]);
+              }
+          });
+      },
+  })
+  });
+$(document).ready(function () {
+    Dropzone.autoDiscover = false;
+    $("#dz-upload").dropzone({
+        url: '#',
+        maxFiles: 1,
+        maxFilesize: 5,
+        uploadMultiple: true,
+        parallelUploads: 1,
+        parallelChunkUploads: false,
+        previewsContainer: '#dropZoneItems',
+        previewTemplate: $('#dropZoneItemsTemplate').html(),
+        init: function() {
+            this.on("addedfile", file => {
+                count = this.files.length;
+                if (this.files[1]!=null){
+                    this.removeFile(this.files[0]);
+                }
+                $('.item-dropzone__file').each(function(){
+                    var name = $('.item-dropzone__file-name', this).text();                                      
+                    var format = name.split('.').pop();                                                 
+                    $('.dropZoneItemIcon',this).attr('src', THEME_URL +'/img/upload-image/'+format+'.png');
+                })
+            });
+        },
+    })
+});
+
+</script>
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85230808, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85230808" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+</body></html>

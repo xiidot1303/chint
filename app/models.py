@@ -32,6 +32,12 @@ class Request(models.Model): # to get points
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
     
+    @property
+    def total_points(self):
+        try:
+            return self.amount * self.point
+        except:
+            return None
 
 class About(models.Model):
     action = models.TextField(null=True, blank=True, max_length=500)
