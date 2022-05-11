@@ -58,5 +58,6 @@ urlpatterns = [
     # user
     path('user/list', user.user_list, name='user_list'),
     path('user/history/<int:user_pk>/', user.user_history, name='user_history'),
+    path('statistic', user.points_statistic, name='statistic'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

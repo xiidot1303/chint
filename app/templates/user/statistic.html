@@ -1,0 +1,52 @@
+{% load static %}
+{% load index %}
+{% load functions %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/black-table.css' %}">
+    <title>Static</title>
+</head>
+<body>
+    
+    <h1><span class="blue">&lt;</span>Пользователи<span class="blue">&gt;</span> <span class="yellow">баллы</pan></h1>
+
+        <table class="container">
+            <thead>
+                <tr>
+                   <th>№</th>
+                   <!-- <th>ID</th> -->
+                   <th>Имя</th>
+                   <th>Телеграм</th>
+                   <!-- <th>Номер телефона</th> -->
+
+                   <th>Баллы</th>
+
+                   
+         
+                </tr>
+             </thead>
+             <tbody>
+                 {% for u in users %}
+                <tr>
+                     <td>{{ forloop.counter }}</td>
+                     
+                     <td>{{ u.name }}</td>
+                     <td>{{ u.firstname }}</td>
+                     
+                     
+                     <td>{{ u|overall_points }}</td>
+
+                     
+                </tr>
+                {% endfor %}
+             </tbody>
+                 </table>
+
+    
+</body>
+</html>
