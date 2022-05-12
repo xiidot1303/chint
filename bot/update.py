@@ -31,6 +31,7 @@ login_handler = ConversationHandler(
         SELECT_LANG: [MessageHandler(Filters.text(['UZ 🇺🇿', 'RU 🇷🇺']), login.select_lang)],
         SEND_NAME: [MessageHandler(Filters.text, login.send_name)],
         SEND_CONTACT: [MessageHandler(Filters.all, login.send_contact)],
+        SEND_CITY: [MessageHandler(Filters.all, login.send_city)],
     },
     fallbacks= [],
     name='login',

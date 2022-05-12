@@ -37,6 +37,19 @@ def send_name(update, context):
     obj.username=update.message.chat.username
     obj.firstname = update.message.chat.first_name
     obj.save()
+
+    update.message.reply_text(get_word('type city', update), reply_markup=ReplyKeyboardMarkup([[get_word('back', update)]], resize_keyboard=True))
+    return SEND_CITY
+
+@is_start_registr
+def send_city(update, context):
+    if update.message.text == get_word('back', update):
+        update.message.reply_text(get_word('type name', update), reply_markup=ReplyKeyboardMarkup([[get_word('back', update)]], resize_keyboard=True))
+        return SEND_NAME
+    obj = Bot_user.objects.get(user_id=update.message.chat.id)
+    obj.city=update.message.text
+    obj.save()
+
     i_contact = KeyboardButton(text=get_word('leave number', update), request_contact=True)
     update.message.reply_text(get_word('send number', update), reply_markup=ReplyKeyboardMarkup([[i_contact], [get_word('back', update)]], resize_keyboard=True))
     return SEND_CONTACT
@@ -44,8 +57,8 @@ def send_name(update, context):
 @is_start_registr
 def send_contact(update, context):
     if update.message.text == get_word('back', update):
-        update.message.reply_text(get_word('type name', update), reply_markup=ReplyKeyboardMarkup([[get_word('back', update)]], resize_keyboard=True))
-        return SEND_NAME
+        update.message.reply_text(get_word('type city', update), reply_markup=ReplyKeyboardMarkup([[get_word('back', update)]], resize_keyboard=True))
+        return SEND_CITY
 
     if update.message.contact == None or not update.message.contact:
         phone_number = update.message.text
