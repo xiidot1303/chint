@@ -14,7 +14,7 @@ def main_menu(update, context):
         www= 0 # do nothing
     
     bot = context.bot
-    keyboard=[[get_word('get points', update)], [get_word('info', update)], 
+    keyboard=[[get_word('get points', update)], [get_word('my points', update)], [get_word('info', update)], 
         [get_word('contact', update)], [get_word('settings', update)]]
     bot.send_message(update.message.chat.id, get_word('main menu', update), reply_markup=ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True))
     check_username(update)

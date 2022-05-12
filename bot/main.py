@@ -4,6 +4,8 @@ from telegram.ext import ConversationHandler
 from app.models import *
 from bot.conversationList import SELECT_LANG, ALL_SETTINGS
 from functions.bot import *
+from django.db.models import Sum, F
+import config
 
 def start(update, context):
     
@@ -33,3 +35,10 @@ def info(update, context):
 def contact(update, context):   
     obj = About.objects.get(pk=1)
     update.message.reply_text(obj.contact, parse_mode=telegram.ParseMode.MARKDOWN)
+
+def my_points(update, context):
+    user = get_user_by_update(update)
+    points = Request.objects.filter(user = user).values('user__name').annotate(p=Sum(F('point')*F('amount')))[0]['p']
+    msg = '<b>{}</b>: {}'.format(get_word('your points', update), int(points))
+    msg += '\n\n👉 <a href="{}/statistic">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
+    update.message.reply_text(msg, parse_mode = telegram.ParseMode.HTML)

@@ -69,6 +69,7 @@ get_points_handler = ConversationHandler(
 )
 
 
+dp.add_handler(MessageHandler(Filters.text(lang_dict['my points']), main.my_points))
 dp.add_handler(MessageHandler(Filters.text(lang_dict['info']), main.info))
 dp.add_handler(MessageHandler(Filters.text(lang_dict['contact']), main.contact))
 
