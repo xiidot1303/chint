@@ -19,10 +19,13 @@ def select_product(update, context):
         word_title=get_word('title', update), title = product.title, word_point=get_word('point', update), 
             point=product.point, description = product.description
     )
+    if product.photo:
+        bot.send_photo(update.message.chat.id, photo = product.photo, 
+            caption = caption, reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('next', update)], [get_word('back', update)]], resize_keyboard=True))
+    else:
+        bot.send_message(update.message.chat.id, caption, reply_markup = ReplyKeyboardMarkup(
+            keyboard=[[get_word('next', update)], [get_word('back', update)]], resize_keyboard=True))
 
-    bot.send_photo(update.message.chat.id, photo = product.photo, 
-        caption = caption, reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('next', update)], [get_word('back', update)]], resize_keyboard=True))
-    
     Request.objects.create(user = get_user_by_update(update), product = product)
 
     return CONFIRM_PRODUCT
