@@ -48,7 +48,10 @@
                                                                         
                                                                         
                                         {% for l in list %}
-                                        <div class="item"><span>{{ l.user__name }}</span><span>{{ l.user__firstname }}</span><span>{{ l.total }} баллы</span></div>
+                                        <div class="item"><span>{{ l.user__name }}</span>
+                                          <span>{{ l.user__firstname }}</span>
+                                          <span>{{ l.user__city }}</span>
+                                          <span>{{ l.total }} баллы</span></div>
                                         
                                         {% endfor %}
                                                                         

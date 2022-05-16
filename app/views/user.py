@@ -30,7 +30,7 @@ def user_history(request, user_pk):
 def points_statistic(request):
     # users = Bot_user.objects.all()
     list = Request.objects.filter(status='conf').values('user__name').annotate(
-        total=Sum(F('point') * F('amount'))).order_by('-total').values('user__name', 'user__firstname', 'total')
+        total=Sum(F('point') * F('amount'))).order_by('-total').values('user__name', 'user__firstname', 'user__city', 'total')
 
     context = {'list': list}
     return render(request, 'user/statistic.html', context)
