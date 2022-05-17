@@ -31,8 +31,13 @@ def get_points(update, context):
 def info(update, context):
     bot = context.bot
     obj = About.objects.get(pk=1)
+    *args, file_type = str(obj.file).split('.')
     file = open('files/{}'.format(str(obj.file)), 'rb')
-    bot.send_document(update.message.chat.id, file)
+    if file_type == 'xls' or file_type == 'xlsx':
+        bot.send_document(update.message.chat.id, file)
+    else:
+        bot.send_photo(update.message.chat.id, file)
+
     # update.message.reply_text(obj.action)
 
 def contact(update, context):   
