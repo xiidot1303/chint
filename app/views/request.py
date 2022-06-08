@@ -10,7 +10,9 @@ from django.db.models import Count
 from datetime import datetime, timedelta
 from app.models import *
 from app.forms import *
-
+from functions.get_object import *
+from config import TELEGRAM_BOT_API_TOKEN
+import telegram
 
 
 @login_required
@@ -22,6 +24,39 @@ def request_list(request):
 @login_required
 def request_change_status(request, pk, status):
     obj = Request.objects.get(pk=pk)
+    user = obj.user
+    point = 0
+    if status == 'wait' and obj.status == 'conf':
+        user.point -= obj.point
+        point = '{} {}'.format(str(0 - obj.point), '⬇️')
+    elif status == 'conf' and obj.status == 'wait':
+        user.point += obj.point
+        point = '{} {}'.format(obj.point, '⬆️')
+    user.save()
     obj.status = status
     obj.save()
+
+    # send message to user by telegram
+    bot = telegram.Bot(token=TELEGRAM_BOT_API_TOKEN)
+    message = ''
+    if status == 'conf':
+        message += get_string('your request is confirmed', user)
+    elif status == 'cancel':
+        message += get_string('your request is cancelled', user)
+    elif status == 'wait':
+        message += get_string('your request is restored', user)
+
+    message += """\n<i>
+    {text_product}: {product};
+    {text_amount}: {amount};</i>
+    <b>{text_point}: {point};</b>
+    """.format(
+        text_product = get_string('product', user), product = obj.product.title,
+        text_amount = get_string('amount', user), amount = obj.amount,
+        text_point = get_string('point', user), point = point,
+    )
+
+    bot.sendMessage(chat_id = user.user_id, text=message, parse_mode = telegram.ParseMode.HTML)
+    #####
+
     return redirect(request_list)

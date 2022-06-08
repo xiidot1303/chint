@@ -46,7 +46,8 @@ def is_start(func):    # This deco break registration if user send /start.
             user = get_user_by_update(update)
             for r in Request.objects.filter(user=user, status=None):
                 r.delete()
-
+            for p in Prizewinner.objects.filter(user=user, status=None):
+                p.delete()
             main_menu(args[0], args[1])
             return ConversationHandler.END
         else:

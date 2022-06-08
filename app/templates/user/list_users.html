@@ -10,6 +10,11 @@
 
 {% block main %}
 <h4 class="font-weight-bold" style="margin-bottom: 30px;">Пользователи</h4>
+
+<a href="{% url 'user_get_excel' %}">
+    <button type="button" class="btn btn-outline-primary" style="margin-bottom: 20px;">Excel</button>
+</a>
+
 <table id="datatable" class="table data-table table-striped table-bordered" >
     <thead>
        <tr>
@@ -40,9 +45,15 @@
                 {% endif %}
             </td>
             <td>{{ u.city }}</td>
-            <td>{{ u|overall_points }}</td>
+            <td>{{ u.point }}
+                <a href="{% url 'user_change_point' u.pk %}" class="mt-2 btn btn-primary" 
+                    style="background-color: rgb(117, 117, 117); font-size: 15px; padding: 10px; margin: 0 0px 10px 20px;"  
+                    data-toggle="tooltip" title="">+/-</a>
+            </td>
+            <!-- <td>{{ u|overall_points }}</td> -->
             <td>
-                <a href="{% url 'user_history' u.pk %}" class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);"  data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-eye"></i></a>
+                <a href="{% url 'user_history' u.pk %}" class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);"  
+                    data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-eye" title=""></i></a>
             </td>
             
        </tr>

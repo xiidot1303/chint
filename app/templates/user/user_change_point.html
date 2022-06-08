@@ -1,0 +1,76 @@
+{% extends 'layout/basic.html' %}
+
+{% load static %}
+
+{% block title %}
+Изменить Баллы
+{% endblock %}
+
+{% block main %}
+
+
+{% if messages %}
+<div class="messages" id="messages">
+    {% for message in messages %}
+    <div id="alert" {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
+        <div class="iq-alert-text"><b>{{ message }}</b></div>
+     </div>
+
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
+
+<form method = "post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="row">
+    {% for f in form %}
+
+    
+    {% if forloop.counter0 == 2 or forloop.counter0 == 4 %}
+    </div>
+    <div class="row">
+        {% else %}
+        {% endif %}
+
+        <div class="col">
+            <div class="col-md-12 col-lg-12">
+                <div class="card mb-2">
+                    <div class="row no-gutters">
+                        <div class="col-md-6 col-lg-8">
+                            <div class="card-body">
+                                <p><b>Пользователь: </b>{{ bot_user.name }}</p>
+                                <p><b>Баллы: </b>{{ bot_user.point }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col">
+
+            <div class="form-group">
+                {{ f.errors }} 
+                {{ f.label_tag }}    {{ f }}
+            </div>
+        
+        </div>
+
+    {% endfor %}
+    </div>
+
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-primary">OK</button>
+    </div>
+
+
+</form>
+{% endblock %}
+

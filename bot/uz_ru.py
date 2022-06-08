@@ -54,16 +54,24 @@ lang_dict = {
     'get points': ["""Ball to'plash 🔢""", """Получить баллы 🔢"""],
     
     'select products': ["""Katalogdan tovarni tanlang""", """Выберите товар из каталога"""],
+
+    # 'select prizes': ["""Katalogdan mukofotni tanlang""", """Выберите приз из каталога"""],
     
     'title': ["""Nom""", """Название"""],
 
     'point': ["""Ball""", """Баллы"""],
     
     'type amount of products': ["""Sotib olgan tovarlaringiz sonini kiriting""", """Введите количество купленных товаров"""],
+   
+    'type amount': ["""Miqdorni kiriting""", """Введите количество призов"""],
     
     'incorrect value': ["""⚠️ Noto'g'ri qiymat ⚠️""", """⚠️ Неверное значение ⚠️"""],
     
-    'send photo': ["""Tasdiqlash uchun rasm jo'nating""", """Отправьте фото для подтверждения"""],
+    'send photo': ["""Tasdiqlash uchun rasm jo'nating\n(Sotuv amalga oshgan do'kon yonida)""", 
+        """Отправьте фото для подтверждения\n(Фото с магазина где была совершена покупка)"""],
+    
+    'send photo2': ["""Tasdiqlash uchun rasm jo'nating\n(Stabilizator o'rnatilgani rasmi)""", 
+        """Отправьте фото для подтверждения\n(Фото установленного стабилизатора)"""],
 
     'completed request': ["""Rahmat! Sizning so'rovingiz qabul qilindi va tez orada ko'rib chiqiladi""", 
         """Спасибо! Ваша заявка принята и будет опубликована после модерации"""],
@@ -79,35 +87,44 @@ lang_dict = {
     'action results': ["""Aksiya natijalari""", """Результаты акции"""],
 
 
-    '': ["""""", """"""],
+    'top20': ["""Top 20 📊""", """Топ 20 📊"""],
 
-    '': ["""""", """"""],
+    'your request is confirmed': ["""✅ Sizning so'rovingiz muvaffaqiyatli qabul qilindi""", """✅ Ваша заявка успешно одобрена"""],
 
-    '': ["""""", """"""],
+    'your request is cancelled': ["""❌ Sizning so'rovingiz tasdiqlanmadi""", """❌ Ваша заявка была отменена"""],
 
-    '': ["""""", """"""],
+    'your request is restored': ["""🔄 Sizning so'rovingiz qayta ko'rib chiqiladi""", """🔄 Ваша заявка находится на повторном рассмотрении"""],
 
-    '': ["""""", """"""],
+    'your prize is confirmed': ["""✅ Sizga mukofot taqdim etildi""", """✅ Вам вручен приз"""],
 
-    '': ["""""", """"""],
+    'your prize is cancelled': ["""❌ Mukofot olish uchun so'rovingiz bekor qilindi""", """❌ Вы не получили приз"""],
 
-    '': ["""""", """"""],
+    'your prize is restored': ["""🔄 Sizning so'rovingiz qayta ko'rib chiqiladi""", """🔄 Ваша заявка находится на повторном рассмотрении"""],
 
-    '': ["""""", """"""],
+    'product': ["""Tovar""", """Товар"""],
 
-    '': ["""""", """"""],
+    'amount': ["""Miqdor""", """Количество"""],
 
-    '': ["""""", """"""],
+    'status': ["""Status""", """Статус"""],
 
-    '': ["""""", """"""],
+    'rules': ["""Qoida 📝""", """Правила 📝"""],
 
-    '': ["""""", """"""],
+    'get prizes': ["""Mukofot olish 🎁""", """Получить призы 🎁"""],
 
-    '': ["""""", """"""],
+    'yes': ["""Ha""", """Да"""],
 
-    '': ["""""", """"""],
+    'no': ["""Yo'q""", """Нет"""],
 
-    '': ["""""", """"""],
+    'are sure exchange points': ["""Haqiqatan ham ushbu sovringa ballarni almashtirmoqchimisiz?""", 
+        """Вы действительно хотите обменять баллы на этот приз?"""],
+
+    'not enough points': ["""❗️ Bunday miqdordagi mahsulotni olish uchun sizda yetarlicha ball yo'q""", 
+        """❗️ У вас недостаточно баллов, чтобы получить такое количество приза"""],
+
+    'completed getting prize': ["""Sizning so'rovingiz qabul qilindi, tez fursatda siz bilan bog'lanamiz""", 
+        """Ваша заявка принята, мы свяжемся с вами в ближайшее время"""],
+
+    'prize': ["""Mukofot""", """Приз"""],
 
     '': ["""""", """"""],
 

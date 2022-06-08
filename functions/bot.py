@@ -14,8 +14,12 @@ def main_menu(update, context):
         www= 0 # do nothing
     
     bot = context.bot
-    keyboard=[[get_word('get points', update)], [get_word('my points', update)], [get_word('info', update)], 
-        [get_word('contact', update)], [get_word('settings', update)]]
+    keyboard=[
+            [get_word('get points', update), get_word('my points', update)], 
+            [get_word('get prizes', update), get_word('contact', update)], 
+            [get_word('settings', update), get_word('rules', update)],
+            [get_word('info', update)], 
+        ]
     bot.send_message(update.message.chat.id, get_word('main menu', update), reply_markup=ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True))
     check_username(update)
 
@@ -38,6 +42,14 @@ def make_button_products(update, context):
     keyboards = list(Product.objects.all().values_list('title'))
     keyboards.append([get_word('back', update)])
     bot.send_message(update.message.chat.id, get_word('select products', update), reply_markup = ReplyKeyboardMarkup(keyboard=keyboards, resize_keyboard=True))
+
+def make_button_prizes(update, context):
+    bot = context.bot
+    keyboards = list(Prize.objects.all().values_list('title'))
+    keyboards.append([get_word('back', update)])
+    bot.send_message(update.message.chat.id, get_word('select products', update), reply_markup = ReplyKeyboardMarkup(keyboard=keyboards, resize_keyboard=True))
+
+
 
 
 def get_word(text, update):

@@ -6,3 +6,5 @@ datetime
 psycopg2
 gunicorn
 pipenv
+pandas
+xlrd

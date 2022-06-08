@@ -9,12 +9,20 @@ class Bot_user(models.Model):
     phone = models.CharField(null=True, blank=True, max_length=40)
     lang = models.CharField(null=True, blank=True, max_length=5)
     date = models.DateTimeField(db_index = True, null=True, auto_now_add=True, blank=True)
-    point = models.FloatField(null=True, blank=True)
+    point = models.FloatField(null=True, blank=True, default=0)
     def __str__(self) -> str:
         try:
             return self.name + ' ' + str(self.phone)
         except:
             return super().__str__()
+
+
+    @property
+    def spent_for_prizes(self):
+        points = 0
+        for p in Prizewinner.objects.filter(user=self).exclude(status = 'cancel'):
+            points += p.point
+        return points
 
 class Product(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
@@ -30,17 +38,54 @@ class Request(models.Model): # to get points
     product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.PROTECT)
     amount = models.FloatField(null=True, blank=True)
     photo = models.FileField(upload_to='photos/requests', null=True, blank=True)
+    photo2 = models.FileField(upload_to='photos/requests', null=True, blank=True)
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
     
-    @property
-    def total_points(self):
-        try:
-            return self.amount * self.point
-        except:
-            return None
 
 class About(models.Model):
     action = models.TextField(null=True, blank=True, max_length=500)
-    file = models.FileField(upload_to='about', null=True, blank=True)
-    contact = models.TextField(null=True, blank=True, max_length=500)
+    file_ru = models.FileField(upload_to='about', null=True, blank=True)
+    file_uz = models.FileField(upload_to='about', null=True, blank=True)
+    contact_ru = models.TextField(null=True, blank=True, max_length=500)
+    contact_uz = models.TextField(null=True, blank=True, max_length=500)
+
+    # footer
+    company_name = models.CharField(null=True, blank=True, max_length=200)
+    company_about = models.CharField(null=True, blank=True, max_length=200)
+    phone1 = models.CharField(null=True, blank=True, max_length=200)
+    phone2 = models.CharField(null=True, blank=True, max_length=200)
+    site = models.CharField(null=True, blank=True, max_length=200)
+    instagram = models.CharField(null=True, blank=True, max_length=200)
+    facebook = models.CharField(null=True, blank=True, max_length=200)
+    telegram = models.CharField(null=True, blank=True, max_length=200)
+    youtube = models.CharField(null=True, blank=True, max_length=200)
+
+class Rule(models.Model):
+    file_uz = models.FileField(upload_to='rule', null=True, blank=True)
+    file_ru = models.FileField(upload_to='rule', null=True, blank=True)
+    text_uz = models.TextField(null=True, blank=True, max_length=1000)
+    text_ru = models.TextField(null=True, blank=True, max_length=1000)
+
+class Excel(models.Model):
+    file = models.FileField(upload_to='excel/', null=True, blank=True)
+
+
+class Prize(models.Model):
+    title = models.CharField(null=True, blank=True, max_length=200)
+    description = models.TextField(null=True, blank=True, max_length=1000)
+    photo = models.FileField(upload_to='photos/prizes', null=True, blank=True)
+    point = models.FloatField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.title
+    
+class Prizewinner(models.Model):
+    user = models.ForeignKey('Bot_user', null=True, blank=False, on_delete=models.PROTECT)
+    prize = models.ForeignKey('Prize', null=True, blank=True, on_delete=models.PROTECT)
+    amount = models.FloatField(null=True, blank=True)
+    point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [prize.point], save it, because prize will may be changed
+    status = models.CharField(null=True, blank=True, max_length=20, choices=(
+        ('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed'), ('end', 'end')
+    ))
+    

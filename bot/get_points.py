@@ -69,6 +69,7 @@ def send_amount(update, context):
         return
     
     update.message.reply_text(get_word('send photo', update)) # button back is already sent
+    # send photo as example
     return SEND_PHOTO
 
 
@@ -88,6 +89,27 @@ def send_photo(update, context):
     *args, file_name = str(photo_id.file_path).split('/')
     d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
     obj.photo = str(d_photo).replace('files/', '')
+    obj.save()
+    
+    update.message.reply_text(get_word('send photo2', update)) # button back is already sent
+    # send photo as example
+    return SEND_PHOTO2
+
+@is_start
+def send_photo2(update, context):
+    bot = context.bot
+    answer = update.message.text
+
+    if answer == get_word('back', update):
+        update.message.reply_text(get_word('send photo', update))
+        return SEND_PHOTO
+    
+    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+
+    photo_id = bot.getFile(update.message.photo[-1].file_id)
+    *args, file_name = str(photo_id.file_path).split('/')
+    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    obj.photo2 = str(d_photo).replace('files/', '')
     obj.save()
     
     update.message.reply_text(get_word('completed request', update))

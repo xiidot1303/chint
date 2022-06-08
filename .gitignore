@@ -11,4 +11,11 @@ files/photos/requests/*
 !files/photos/requests/init
 files/about/*
 !files/about/init
+files/excel/*
+!files/excel/init
+files/rule/*
+!files/rule/init
+files/photos/prizes/*
+!files/photos/prizes/init
+
 persistencebot

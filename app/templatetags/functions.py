@@ -29,6 +29,20 @@ def text_maker(obj):
 def overall_points(user):
     points = 0.0
     for r in Request.objects.filter(user=user, status = 'conf'):
-        points += r.point * r.amount
+        points += r.point
 
     return points
+
+
+@register.filter
+def added_points(user):
+    points = 0.0
+    for r in Request.objects.filter(user=user, status = 'conf'):
+        points += r.point
+    added = user.point + user.spent_for_prizes - points
+    return added
+
+
+@register.filter
+def to_dict(f):
+    print(f.__dict__)

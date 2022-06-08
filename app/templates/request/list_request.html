@@ -23,7 +23,8 @@
           <th>Номер телефона</th>
           <th>Товар</th>
           <th>Количество</th>
-          <th>Фото</th>
+          <th>Фото 1</th>
+          <th>Фото 2</th>
           <th>Баллы</th>
           <th>Действия</th>
        </tr>
@@ -43,6 +44,9 @@
             <td>{{ l.amount }}</td>
             <td><a href="/files/{{ l.photo }}" target="_blank">
                 <img class="product_list_img" src="/files/{{ l.photo }}" alt="">
+            </a></td>
+            <td><a href="/files/{{ l.photo2 }}" target="_blank">
+                <img class="product_list_img" src="/files/{{ l.photo2 }}" alt="">
             </a></td>
             <td>{{ l.point }}</td>
             
