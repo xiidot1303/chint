@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from app.models import *
 from app.forms import *
 from django.db.models import Count, Sum, F, Q
-import pandas as pd
+# import pandas as pd
 
 
 @login_required
@@ -30,29 +30,30 @@ def user_history(request, user_pk):
 
 @login_required
 def user_get_excel(request):
-    def overall_points(user):
-        points = 0
-        for r in Request.objects.filter(user=user, status = 'conf'):
-            points += r.point * r.amount
+    # def overall_points(user):
+    #     points = 0
+    #     for r in Request.objects.filter(user=user, status = 'conf'):
+    #         points += r.point * r.amount
 
-        return points
+    #     return points
     
-    df = {'№': [], 'ID': [], 'Имя': [], 'Номер телефона': [], 'Username': [], 'Город': [], 'Баллы': []}
+    # df = {'№': [], 'ID': [], 'Имя': [], 'Номер телефона': [], 'Username': [], 'Город': [], 'Баллы': []}
     
-    df['№'] = list(range(1, len(Bot_user.objects.all())+1))
-    df['ID'] = list(Bot_user.objects.all().values_list('user_id', flat=True))
-    df['Имя'] = list(Bot_user.objects.all().values_list('name', flat=True))
-    df['Номер телефона'] = list(Bot_user.objects.all().values_list('phone', flat=True))
-    df['Username'] = list(Bot_user.objects.all().values_list('username', flat=True))
-    df['Город'] = list(Bot_user.objects.all().values_list('city', flat=True))
-    df['Баллы'] = list(Bot_user.objects.all().values_list('point', flat=True))
-    # df['Баллы'] = [overall_points(user) for user in Bot_user.objects.all()]
+    # df['№'] = list(range(1, len(Bot_user.objects.all())+1))
+    # df['ID'] = list(Bot_user.objects.all().values_list('user_id', flat=True))
+    # df['Имя'] = list(Bot_user.objects.all().values_list('name', flat=True))
+    # df['Номер телефона'] = list(Bot_user.objects.all().values_list('phone', flat=True))
+    # df['Username'] = list(Bot_user.objects.all().values_list('username', flat=True))
+    # df['Город'] = list(Bot_user.objects.all().values_list('city', flat=True))
+    # df['Баллы'] = list(Bot_user.objects.all().values_list('point', flat=True))
+    # # df['Баллы'] = [overall_points(user) for user in Bot_user.objects.all()]
 
 
-    df = pd.DataFrame(df).set_index('№')
-    df.to_excel('files/excel/user_list.xlsx')
-    file = open('files/excel/user_list.xlsx', 'rb')
-    return FileResponse(file)
+    # df = pd.DataFrame(df).set_index('№')
+    # df.to_excel('files/excel/user_list.xlsx')
+    # file = open('files/excel/user_list.xlsx', 'rb')
+    # return FileResponse(file)
+    return HttpResponse('')
 
 
 def points_statistic(request):
