@@ -46,3 +46,7 @@ def added_points(user):
 @register.filter
 def to_dict(f):
     print(f.__dict__)
+
+@register.filter
+def summ(a, b):
+    return a + b

@@ -69,17 +69,18 @@
             <td>В ожидании</td>
             <td>
                 <a class="mt-2 btn btn-primary" style="background-color: rgb(19, 160, 19);" href="{% url 'laureate_change_status' l.pk 'conf' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="Принять"><i class="fas fa-check-circle"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Принять</div>
-               </div>
+               </div> -->
 
 
-               <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'laureate_change_status' l.pk 'cancel' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'laureate_change_status' l.pk 'cancel' %}" 
+               role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a>
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Отменить</div>
-               </div>
+               </div> -->
 
             </td>
             
@@ -88,18 +89,18 @@
             <td>
                 <a class="mt-2 btn btn-primary" style="background-color: rgb(53, 80, 236);" href="{% url 'laureate_change_status' l.pk 'wait' %}"
                  role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="В ожидании "><i class="fas fa-undo"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">В ожидании </div>
-               </div>
+               </div> -->
 
 
                <a class="mt-2 btn btn-primary" style="background-color: rgba(136, 136, 136, 0.659);" href="{% url 'laureate_change_status' l.pk 'end' %}" 
                role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Подан"><i class="fas fa-check"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Подан</div>
-               </div>
+               </div> -->
 
             </td>
 
@@ -108,10 +109,10 @@
             <td>
                 <a class="mt-2 btn btn-primary" style="background-color: rgb(53, 80, 236);" href="{% url 'laureate_change_status' l.pk 'wait' %}"
                  role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="В ожидании "><i class="fas fa-undo"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">В ожидании </div>
-               </div>
+               </div> -->
 
 
 
@@ -123,10 +124,10 @@
             <td>
                 <a class="mt-2 btn btn-primary" style="background-color: rgb(53, 80, 236);" href="{% url 'laureate_change_status' l.pk 'conf' %}"
                  role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="Восстановить"><i class="fas fa-backspace"></i></a>
-               <div class="tooltip bs-tooltip-top" role="tooltip">
+               <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Восстановить</div>
-               </div>
+               </div> -->
 
 
 

@@ -5,15 +5,16 @@
 <!DOCTYPE html>
 <html lang="ru"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Statistic</title>
+  <title>Статистика акции</title>
 
-<meta name="description" content="V ПРЕМИЯ БРЕНД ГОДА 2021">
-<meta property="og:description" content="V ПРЕМИЯ БРЕНД ГОДА 2021">
-<meta name="keywords" content="V ПРЕМИЯ БРЕНД ГОДА 2021"><meta name="author" content="Создание и продвижение сайтов Life Style">
+<meta name="description" content="Рейтинг ТОП 20 Участников Акции">
+<meta property="og:description" content="Рейтинг ТОП 20 Участников Акции">
+<meta name="keywords" content="Рейтинг ТОП 20 Участников Акции"><meta name="author" content="Создание и продвижение сайтов Life Style">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="icon" href="{% static 'icon/n1.ico' %}">
 <link rel="manifest" href="https://marketing.uz/brend-goda-2021/themes/dist/img/favicon/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="https://marketing.uz/brend-goda-2021/themes/dist/img/favicon/ms-icon-144x144.png">
@@ -30,11 +31,21 @@
 
   <!-- <link rel="stylesheet" href="{% static 'assets/css/statistic.css' %}"> -->
 </head>
-<body background="{% static 'img/chint.jpg' %}" style="background-size: cover;">
-<div class="wrapper">
+<!-- <body background="{% static 'img/chint.jpg' %}" style="background-size: cover; background-repeat: no-repeat;"> -->
+<body>
+
+<div style="background-repeat: no-repeat; background-size: cover; width: 100%; height: 100%; margin: auto; 
+background-image: url('{% static 'img/chint.jpg' %}'); position: fixed; z-index: -2;">
+</div>
+
+<div style="height: 100%; width: 100%; background-color: rgba(43, 0, 255, 0.445); background-size: cover; position: fixed; z-index: -1;">
+
+</div>
+
+  <div class="wrapper">
   <!-- ?Подключение Header -->
  
-<header style="position: fixed; z-index: 99;">
+<header style="position: fixed; z-index: 98;">
   <img src="{% static 'img/header.png' %}" alt="">
 </header>
 
@@ -42,7 +53,7 @@
 <main class="main">
 
 
-        <div style="margin-top: 120px; z-index: 1;" class="container" id="dev">
+        <div style="margin-top: 150px; z-index: 5;" class="container" id="dev">
           <!-- <h5 class="stages__title title title-primary" style="text-align: center;">Данная акция действует до</h5> -->
         
        <div class="votign-items boxes-3 figure-m-v-20" style="margin-bottom: 100px;">
@@ -56,120 +67,24 @@
                                                                         
                                         {% for l in list %}
                                         <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
+                                          
                                           
                                             <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
                                           
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
+                                          <span style="text-align:right;width: 200px;"><b>{{ l.total }} баллы / Осталось {{ l.user__point }}</b></span>
                                         </div>
+                                        
+                                        <!-- <div class="item"><span style="text-align:left;width: 200px;">{{ l.name }}</span>
+                                          
+                                          
+                                            <span style="text-align:right;width: 200px;">{{ l.city }}</span>
+                                          
+                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы / {{ l.point }}</span>
+                                        </div> -->
                                         
                                         {% endfor %}
                                                                         
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
                                           
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
-                                                                        
-                                        {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
-                                          <!-- <span style="text-align:left;width: 200px;">{{ l.user__firstname }}</span> -->
-                                          
-                                            <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
-                                          
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы</span>
-                                        </div>
-                                        
-                                        {% endfor %}
-                                                                        
-                                                                        
 
                                                                         
 

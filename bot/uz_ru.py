@@ -7,7 +7,7 @@ lang_dict = {
     
     'type name': ["""Ism-sharifingizni (FIO) kiriting""", """Введите ваше ФИО"""],
     
-    'type city': ["""Qaysi shahardansiz?""", """Вы из какого города?"""],
+    'type city': ["""Qaysi shahardansiz?""", """Из какого вы города?"""],
 
     'send number': ["""Telefon raqamingizni yuboring """, """Оставьте свой номер телефона """],
 
@@ -67,11 +67,11 @@ lang_dict = {
     
     'incorrect value': ["""⚠️ Noto'g'ri qiymat ⚠️""", """⚠️ Неверное значение ⚠️"""],
     
-    'send photo': ["""Tasdiqlash uchun rasm jo'nating\n(Sotuv amalga oshgan do'kon yonida)""", 
-        """Отправьте фото для подтверждения\n(Фото с магазина где была совершена покупка)"""],
+    'send photo': ["""Tasdiqlash uchun rasm jo'nating\n(Sotuv amalga oshgan do'kon yonida, quyidagi rasm kabi)""", 
+        """Отправьте фото для подтверждения\n(Фото с магазина где была совершена покупка. Как на картинке ниже)"""],
     
-    'send photo2': ["""Tasdiqlash uchun rasm jo'nating\n(Stabilizator o'rnatilgani rasmi)""", 
-        """Отправьте фото для подтверждения\n(Фото установленного стабилизатора)"""],
+    'send photo2': ["""Tasdiqlash uchun rasm jo'nating\n(Stabilizator o'rnatilgani rasmi, quyidagi rasm kabi)""", 
+        """Отправьте фото для подтверждения\n(Фото установленного стабилизатора. Как на картинке ниже)"""],
 
     'completed request': ["""Rahmat! Sizning so'rovingiz qabul qilindi va tez orada ko'rib chiqiladi""", 
         """Спасибо! Ваша заявка принята и будет опубликована после модерации"""],
@@ -91,13 +91,15 @@ lang_dict = {
 
     'your request is confirmed': ["""✅ Sizning so'rovingiz muvaffaqiyatli qabul qilindi""", """✅ Ваша заявка успешно одобрена"""],
 
-    'your request is cancelled': ["""❌ Sizning so'rovingiz tasdiqlanmadi""", """❌ Ваша заявка была отменена"""],
+    'your request is cancelled': ["""❌ Sizning so'rovingiz tasdiqlanmadi. To'liq ma'lumot uchun administrator bilan bog'laning {telegram_username} yoki quyidagi telefon raqamga qo'ng'iroq qiling {phone_number}""", 
+        """❌ Ваша заявка была отменена. Свяжитесь с модератором для более подробной информации {telegram_username} или позвоните по номеру {phone_number}"""],
 
     'your request is restored': ["""🔄 Sizning so'rovingiz qayta ko'rib chiqiladi""", """🔄 Ваша заявка находится на повторном рассмотрении"""],
 
     'your prize is confirmed': ["""✅ Sizga mukofot taqdim etildi""", """✅ Вам вручен приз"""],
 
-    'your prize is cancelled': ["""❌ Mukofot olish uchun so'rovingiz bekor qilindi""", """❌ Вы не получили приз"""],
+    'your prize is cancelled': ["""❌ Mukofot olish uchun so'rovingiz bekor qilindi. To'liq ma'lumot uchun administrator bilan bog'laning {telegram_username} yoki quyidagi telefon raqamga qo'ng'iroq qiling {phone_number}""", 
+        """❌ Вы не получили приз.Свяжитесь с модератором для более подробной информации {telegram_username} или позвоните по номеру {phone_number}"""],
 
     'your prize is restored': ["""🔄 Sizning so'rovingiz qayta ko'rib chiqiladi""", """🔄 Ваша заявка находится на повторном рассмотрении"""],
 
@@ -126,7 +128,7 @@ lang_dict = {
 
     'prize': ["""Mukofot""", """Приз"""],
 
-    '': ["""""", """"""],
+    'example': ["""Misol uchun""", """"""],
 
     '': ["""""", """"""],
 

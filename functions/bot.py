@@ -45,7 +45,12 @@ def make_button_products(update, context):
 
 def make_button_prizes(update, context):
     bot = context.bot
-    keyboards = list(Prize.objects.all().values_list('title'))
+    user = get_user_by_update(update)
+    if user.lang == 'uz':
+        keyboards = list(Prize.objects.all().values_list('title_uz'))
+    else: #ru
+        keyboards = list(Prize.objects.all().values_list('title'))
+         
     keyboards.append([get_word('back', update)])
     bot.send_message(update.message.chat.id, get_word('select products', update), reply_markup = ReplyKeyboardMarkup(keyboard=keyboards, resize_keyboard=True))
 

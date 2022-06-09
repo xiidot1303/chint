@@ -25,6 +25,7 @@ def laureate_list(request):
 @login_required
 def laureate_change_status(request, pk, status):
     obj = Prizewinner.objects.get(pk=pk)
+    about = About.objects.get(pk=1)
     user = obj.user
 
     # give point if cancelled request
@@ -47,7 +48,7 @@ def laureate_change_status(request, pk, status):
     if status == 'conf' and obj.status != 'end':
         message += get_string('your prize is confirmed', user)
     elif status == 'cancel':
-        message += get_string('your prize is cancelled', user)
+        message += get_string('your prize is cancelled', user).format(telegram_username = about.telegram_username, phone_number = about.phone1)
     elif status == 'wait':
         message += get_string('your prize is restored', user)
     if message:

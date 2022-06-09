@@ -14,11 +14,19 @@ def select_prize(update, context):
     if answer == get_word('back', update):
         main_menu(update, context)
         return ConversationHandler.END
+    user = get_user_by_update(update)
+    if user.lang == 'uz':
+        prize = Prize.objects.filter(title_uz = answer)[0]
+        title = prize.title_uz
+        description = prize.description_uz
+    else: # ru
+        prize = Prize.objects.filter(title = answer)[0]
+        title = prize.title
+        description = prize.description
 
-    prize = Prize.objects.filter(title = answer)[0]
     caption = '⚫️ {word_title}: {title};\n⚫️ {word_point}: {point};\n\n💬  {description};'.format(
-        word_title=get_word('title', update), title = prize.title, word_point=get_word('point', update), 
-            point=prize.point, description = prize.description
+        word_title=get_word('title', update), title = title, word_point=get_word('point', update), 
+            point=prize.point, description = description
     )
     if prize.photo:
         bot.send_photo(update.message.chat.id, photo = prize.photo, 
@@ -55,7 +63,12 @@ def send_amount_prize(update, context):
 
     if answer == get_word('back', update):
         obj = Prizewinner.objects.get(user=get_user_by_update(update), status = None)
-        update.message.text = obj.prize.title
+        user = get_user_by_update(update)
+        if user.lang == 'uz':
+            update.message.text = obj.prize.title_uz
+        else: # ru
+            update.message.text = obj.prize.title
+
         obj.delete()
         select_prize(update, context)
         return CONFIRM_PRIZE

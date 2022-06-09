@@ -49,6 +49,7 @@ class About(models.Model):
     file_uz = models.FileField(upload_to='about', null=True, blank=True)
     contact_ru = models.TextField(null=True, blank=True, max_length=500)
     contact_uz = models.TextField(null=True, blank=True, max_length=500)
+    telegram_username = models.CharField(null=True, blank=True, max_length=200)
 
     # footer
     company_name = models.CharField(null=True, blank=True, max_length=200)
@@ -73,7 +74,9 @@ class Excel(models.Model):
 
 class Prize(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
+    title_uz = models.CharField(null=True, blank=True, max_length=200)
     description = models.TextField(null=True, blank=True, max_length=1000)
+    description_uz = models.TextField(null=True, blank=True, max_length=1000)
     photo = models.FileField(upload_to='photos/prizes', null=True, blank=True)
     point = models.FloatField(null=True, blank=True)
 

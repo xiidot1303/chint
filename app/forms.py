@@ -35,7 +35,7 @@ class AboutForm(ModelForm):
     class Meta:
         model = About
         fields = {'file_ru', 'file_uz', 'contact_ru', 'contact_uz', 'company_name', 'company_about', 'phone1', 'phone2', 
-            'site', 'instagram', 'facebook', 'telegram', 'youtube'}
+            'site', 'instagram', 'facebook', 'telegram', 'youtube', 'telegram_username'}
         
         widgets = {
             'file_ru': forms.FileInput(attrs={'class': 'custom-file-input'}), 
@@ -46,6 +46,7 @@ class AboutForm(ModelForm):
             'company_about': forms.TextInput(attrs={'class': 'form-control'}), 
             'phone1': forms.TextInput(attrs={'class': 'form-control'}), 
             'phone2': forms.TextInput(attrs={'class': 'form-control'}), 
+            'telegram_username': forms.TextInput(attrs={'class': 'form-control'}), 
             'site': forms.TextInput(attrs={'class': 'form-control'}), 
             'instagram': forms.TextInput(attrs={'class': 'form-control'}), 
             'facebook': forms.TextInput(attrs={'class': 'form-control'}), 
@@ -62,13 +63,14 @@ class AboutForm(ModelForm):
             'company_about': 'О компании', 
             'phone1': 'Телефон 1', 
             'phone2': 'Телефон 2', 
+            'telegram_username': 'Модератор', 
             'site': 'Сайт', 
             'instagram': 'Instagram', 
             'facebook': 'Faceboook', 
             'telegram': 'Telegram', 
             'youtube': 'Youtube'
         }
-    field_order = ['file_ru', 'file_uz', 'contact_ru', 'contact_uz', 'company_name', 'company_about', 'phone1', 'phone2', 
+    field_order = ['file_ru', 'file_uz', 'contact_ru', 'contact_uz', 'company_name', 'company_about', 'phone1', 'phone2', 'telegram_username',
         'site', 'instagram', 'facebook', 'telegram', 'youtube']
 
 
@@ -97,19 +99,23 @@ class RuleForm(ModelForm):
 class PrizeForm(ModelForm):
     class Meta:
         model = Prize
-        fields = {'title', 'description', 'photo', 'point'}
+        fields = {'title', 'title_uz', 'description', 'description_uz', 'photo', 'point'}
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'title_uz': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', "style":"height: 200px;"}),
+            'description_uz': forms.Textarea(attrs={'class': 'form-control', "style":"height: 200px;"}),
             'photo': forms.FileInput(attrs={'class': 'custom-file-input'}),
             'point': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
         labels = {
-            'title': 'Название',
-            'description': 'Описание',
+            'title': 'Название (RU)',
+            'title_uz': 'Название (UZ)',
+            'description': 'Описание (RU)',
+            'description_uz': 'Описание (UZ)',
             'photo': 'Фото',
             'point': 'Баллы',
         }
 
-    field_order = ['title', 'point', 'description', 'photo']
+    field_order = ['title', 'title_uz', 'description', 'description_uz', 'point', 'photo']

@@ -25,6 +25,7 @@
           <th>Username</th>
           <th>Город</th>
           <th>Баллы</th>
+          <th>Снял</th>
           <th>История</th>
           
 
@@ -50,6 +51,7 @@
                     style="background-color: rgb(117, 117, 117); font-size: 15px; padding: 10px; margin: 0 0px 10px 20px;"  
                     data-toggle="tooltip" title="">+/-</a>
             </td>
+            <td>{{ u.spent_for_prizes }} из {{ u.point|summ:u.spent_for_prizes }}</td>
             <!-- <td>{{ u|overall_points }}</td> -->
             <td>
                 <a href="{% url 'user_history' u.pk %}" class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);"  

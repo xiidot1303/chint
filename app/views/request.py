@@ -24,6 +24,7 @@ def request_list(request):
 @login_required
 def request_change_status(request, pk, status):
     obj = Request.objects.get(pk=pk)
+    about = About.objects.get(pk=1)
     user = obj.user
     point = 0
     if status == 'wait' and obj.status == 'conf':
@@ -42,7 +43,7 @@ def request_change_status(request, pk, status):
     if status == 'conf':
         message += get_string('your request is confirmed', user)
     elif status == 'cancel':
-        message += get_string('your request is cancelled', user)
+        message += get_string('your request is cancelled', user).format(telegram_username = about.telegram_username, phone_number = about.phone1)
     elif status == 'wait':
         message += get_string('your request is restored', user)
 
