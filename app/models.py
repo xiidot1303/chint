@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 
 class Bot_user(models.Model):
     user_id = models.IntegerField(null=True)
@@ -20,7 +21,7 @@ class Bot_user(models.Model):
     @property
     def spent_for_prizes(self):
         points = 0
-        for p in Prizewinner.objects.filter(user=self).exclude(status = 'cancel'):
+        for p in Prizewinner.objects.filter(user=self).exclude(Q(status = 'cancel') and Q(status = None)):
             points += p.point
         return points
 
