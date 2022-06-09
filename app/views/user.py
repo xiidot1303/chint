@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from app.models import *
 from app.forms import *
 from django.db.models import Count, Sum, F, Q
-# import pandas as pd
+import pandas as pd
 
 
 @login_required
