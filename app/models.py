@@ -21,7 +21,7 @@ class Bot_user(models.Model):
     @property
     def spent_for_prizes(self):
         points = 0
-        for p in Prizewinner.objects.filter(user=self).exclude(Q(status = 'cancel') and Q(status = None)):
+        for p in Prizewinner.objects.filter(user=self).filter(~Q(status = 'cancel') & ~Q(status = None)):
             points += p.point
         return points
 

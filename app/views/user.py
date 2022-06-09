@@ -37,7 +37,7 @@ def user_get_excel(request):
 
         return points
     
-    df = {'№': [], 'ID': [], 'Имя': [], 'Номер телефона': [], 'Username': [], 'Город': [], 'Баллы': []}
+    df = {'№': [], 'ID': [], 'Имя': [], 'Номер телефона': [], 'Username': [], 'Город': [], 'Баллы': [], 'Снял': [], 'Общий': []}
     
     df['№'] = list(range(1, len(Bot_user.objects.all())+1))
     df['ID'] = list(Bot_user.objects.all().values_list('user_id', flat=True))
@@ -46,6 +46,10 @@ def user_get_excel(request):
     df['Username'] = list(Bot_user.objects.all().values_list('username', flat=True))
     df['Город'] = list(Bot_user.objects.all().values_list('city', flat=True))
     df['Баллы'] = list(Bot_user.objects.all().values_list('point', flat=True))
+    for user in Bot_user.objects.all():
+        df['Снял'].append(user.spent_for_prizes)
+        df['Общий'].append(user.spent_for_prizes + user.point)
+
     # df['Баллы'] = [overall_points(user) for user in Bot_user.objects.all()]
 
 
