@@ -18,7 +18,7 @@ import telegram
 
 @login_required
 def laureate_list(request):
-    laureates = Prizewinner.objects.all().order_by('-pk')
+    laureates = Prizewinner.objects.all().exclude(status=None).order_by('-pk')
     context = {'list': laureates}
     return render(request, 'laureate/list_laureate.html', context)
 

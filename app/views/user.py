@@ -70,7 +70,7 @@ def points_statistic(request):
     #     list[n]['total'] = user.spent_for_prizes + user.point
     #     n += 1
 
-    list = Bot_user.objects.all().order_by('-total')
+    list = Bot_user.objects.filter().exclude(phone=None).order_by('-total')
 
     about = About.objects.get(pk=1)
     context = {'list': list, 'about': about}

@@ -107,7 +107,7 @@ def top20(update, context):
 
         # query_users = Bot_user.objects.all().annotate(total=F('point')).order_by('-total')
 
-        query_users = Bot_user.objects.all().order_by('-total')
+        query_users = Bot_user.objects.all().exclude(phone=None).order_by('-total')
         list_users = list(query_users.values_list('pk', flat=True))
         top20_list = query_users[:20]
         user_index = list_users.index(current_user.pk) + 1
