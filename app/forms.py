@@ -35,7 +35,7 @@ class AboutForm(ModelForm):
     class Meta:
         model = About
         fields = {'file_ru', 'file_uz', 'contact_ru', 'contact_uz', 'company_name', 'company_about', 'phone1', 'phone2', 
-            'site', 'instagram', 'facebook', 'telegram', 'youtube', 'telegram_username'}
+            'site', 'instagram', 'facebook', 'telegram', 'youtube', 'telegram_username', 'email'}
         
         widgets = {
             'file_ru': forms.FileInput(attrs={'class': 'custom-file-input'}), 
@@ -48,6 +48,7 @@ class AboutForm(ModelForm):
             'phone2': forms.TextInput(attrs={'class': 'form-control'}), 
             'telegram_username': forms.TextInput(attrs={'class': 'form-control'}), 
             'site': forms.TextInput(attrs={'class': 'form-control'}), 
+            'email': forms.TextInput(attrs={'class': 'form-control'}), 
             'instagram': forms.TextInput(attrs={'class': 'form-control'}), 
             'facebook': forms.TextInput(attrs={'class': 'form-control'}), 
             'telegram': forms.TextInput(attrs={'class': 'form-control'}), 
@@ -65,13 +66,14 @@ class AboutForm(ModelForm):
             'phone2': 'Телефон 2', 
             'telegram_username': 'Модератор', 
             'site': 'Сайт', 
+            'email': 'Email', 
             'instagram': 'Instagram', 
             'facebook': 'Faceboook', 
             'telegram': 'Telegram', 
             'youtube': 'Youtube'
         }
     field_order = ['file_ru', 'file_uz', 'contact_ru', 'contact_uz', 'company_name', 'company_about', 'phone1', 'phone2', 'telegram_username',
-        'site', 'instagram', 'facebook', 'telegram', 'youtube']
+        'site', 'email', 'instagram', 'facebook', 'telegram', 'youtube']
 
 
 class RuleForm(ModelForm):

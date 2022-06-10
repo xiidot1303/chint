@@ -70,7 +70,7 @@ def send_amount(update, context):
     
     update.message.reply_text(get_word('send photo', update)) # button back is already sent
     try:
-        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAIMdmKhmbTUj9f-aeZLAAFEaFQzkqckJwACeL4xG1RKCElI5qmBXuIhNAEAAwIAA3MAAyQE')
+        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ')
     except:
         a = 0
     return SEND_PHOTO
@@ -96,7 +96,7 @@ def send_photo(update, context):
     
     update.message.reply_text(get_word('send photo2', update)) # button back is already sent
     try:
-        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAIMeGKhmeULHh2KoqIzHJf7Ac3IOw3JAAJ6vjEbVEoISRJeuAlmRG0KAQADAgADcwADJAQ')
+        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAINGWKi9dUAAasdOPYiE8wfSf7kzV9--wACer4xG1RKCEkSXrgJZkRtCgEAAwIAA3MAAyQE')
     except:
         a = 0
     return SEND_PHOTO2

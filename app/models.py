@@ -65,6 +65,7 @@ class About(models.Model):
     phone1 = models.CharField(null=True, blank=True, max_length=200)
     phone2 = models.CharField(null=True, blank=True, max_length=200)
     site = models.CharField(null=True, blank=True, max_length=200)
+    email = models.CharField(null=True, blank=True, max_length=200)
     instagram = models.CharField(null=True, blank=True, max_length=200)
     facebook = models.CharField(null=True, blank=True, max_length=200)
     telegram = models.CharField(null=True, blank=True, max_length=200)
