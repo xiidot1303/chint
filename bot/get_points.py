@@ -4,6 +4,7 @@ from bot.conversationList import *
 from telegram.ext import ConversationHandler
 from functions.bot import *
 from functions.deco import *
+from config import ENVIRONMENT
 
 @is_start
 def select_product(update, context):
@@ -69,10 +70,15 @@ def send_amount(update, context):
         return
     
     update.message.reply_text(get_word('send photo', update)) # button back is already sent
-    try:
-        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ')
-    except:
-        a = 0
+    # try:
+    if ENVIRONMENT == 'local':
+        photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
+    else:
+        f = open('files/photos/1.jpg', 'rb')
+        photo = f
+    bot.send_photo(update.message.chat.id, photo = photo)
+    # except:
+    #     a = 0
     return SEND_PHOTO
 
 
@@ -96,7 +102,12 @@ def send_photo(update, context):
     
     update.message.reply_text(get_word('send photo2', update)) # button back is already sent
     try:
-        bot.send_photo(update.message.chat.id, photo = 'AgACAgIAAxkBAAINGWKi9dUAAasdOPYiE8wfSf7kzV9--wACer4xG1RKCEkSXrgJZkRtCgEAAwIAA3MAAyQE')
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGWKi9dUAAasdOPYiE8wfSf7kzV9--wACer4xG1RKCEkSXrgJZkRtCgEAAwIAA3MAAyQE'
+        else:
+            f = open('files/photos/2.jpg', 'rb')
+            photo = f
+        bot.send_photo(update.message.chat.id, photo = photo)
     except:
         a = 0
     return SEND_PHOTO2
@@ -108,6 +119,12 @@ def send_photo2(update, context):
 
     if answer == get_word('back', update):
         update.message.reply_text(get_word('send photo', update))
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
+        else:
+            f = open('files/photos/1.jpg', 'rb')
+            photo = f
+        bot.send_photo(update.message.chat.id, photo = photo)
         return SEND_PHOTO
     
     obj = Request.objects.get(user = get_user_by_update(update), status=None)
