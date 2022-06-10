@@ -95,7 +95,8 @@ def my_points(update, context):
     user = get_user_by_update(update)
     # points = Request.objects.filter(user = user).values('user__name').annotate(p=Sum(F('point')*F('amount')))[0]['p']
     msg = '<b>{}</b>: {}'.format(get_word('your points', update), user.point)
-    msg += '\n\n👉 <a href="{}/statistic">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
+    # msg += '\n\n👉 <a href="{}/statistic">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
+    msg += '\n\n👉 <a href="{}">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
     i_top20 = InlineKeyboardButton(text=get_word('top20', update), callback_data='top20')
     update.message.reply_text(msg, reply_markup = InlineKeyboardMarkup([[i_top20]]), parse_mode = telegram.ParseMode.HTML)
 
