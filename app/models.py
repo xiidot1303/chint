@@ -11,6 +11,7 @@ class Bot_user(models.Model):
     lang = models.CharField(null=True, blank=True, max_length=5)
     date = models.DateTimeField(db_index = True, null=True, auto_now_add=True, blank=True)
     point = models.FloatField(null=True, blank=True, default=0)
+    total = models.FloatField(null=True, blank=True, default=0)
     def __str__(self) -> str:
         try:
             return self.name + ' ' + str(self.phone)
@@ -24,6 +25,12 @@ class Bot_user(models.Model):
         for p in Prizewinner.objects.filter(user=self).filter(~Q(status = 'cancel') & ~Q(status = None)):
             points += p.point
         return points
+
+    def save(self, *args, **kwargs):
+        self.total = self.point + self.spent_for_prizes
+        super(Bot_user, self).save(*args, **kwargs)
+        
+
 
 class Product(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
@@ -93,3 +100,8 @@ class Prizewinner(models.Model):
         ('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed'), ('end', 'end')
     ))
     
+    def save(self, *args, **kwargs):
+        super(Prizewinner, self).save(*args, **kwargs)
+        user = self.user
+        user.total = user.point + user.spent_for_prizes
+        user.save()

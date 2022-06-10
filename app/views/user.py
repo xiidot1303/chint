@@ -62,16 +62,16 @@ def user_get_excel(request):
 
 def points_statistic(request):
     # users = Bot_user.objects.all()
-    list = Request.objects.filter(status='conf').values('user__name').annotate(
-        total=F('user__point')).order_by('-total').values('user__pk', 'user__name', 'user__firstname', 'user__city', 'total', 'user__point')
-    n = 0
-    for l in list:
-        user = Bot_user.objects.get(pk=l['user__pk'])
-        list[n]['total'] = user.spent_for_prizes + user.point
-        n += 0
-    print(list.order_by('-total'))
-    # list = Bot_user.objects.filter().annotate(total=F('point')+F('spent_for_prizes')).order_by('-total')
-    # list = Bot_user.objects.filter().order_by('-spent_for_prizes')
+    # list = Request.objects.filter(status='conf').values('user__name').annotate(
+    #     total=F('user__point')).order_by('-total').values('user__pk', 'user__name', 'user__firstname', 'user__city', 'total', 'user__point')
+    # n = 0
+    # for l in list:
+    #     user = Bot_user.objects.get(pk=l['user__pk'])
+    #     list[n]['total'] = user.spent_for_prizes + user.point
+    #     n += 1
+
+    list = Bot_user.objects.all().order_by('-total')
+
     about = About.objects.get(pk=1)
     context = {'list': list, 'about': about}
     return render(request, 'user/statistic.html', context)

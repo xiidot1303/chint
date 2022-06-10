@@ -104,10 +104,12 @@ def top20(update, context):
     update = update.callback_query
     if update.data == 'top20':
         current_user  = get_user_by_update(update)
-        list_users = list(
-            Bot_user.objects.all().order_by('-point').values_list('pk', flat=True)
-        )
-        top20_list = Bot_user.objects.all().order_by('-point')[:20]
+
+        # query_users = Bot_user.objects.all().annotate(total=F('point')).order_by('-total')
+
+        query_users = Bot_user.objects.all().order_by('-total')
+        list_users = list(query_users.values_list('pk', flat=True))
+        top20_list = query_users[:20]
         user_index = list_users.index(current_user.pk) + 1
     
         message = '⬆️ Top 20:\n\n'
@@ -123,7 +125,7 @@ def top20(update, context):
             else:
                 text += '{}. '.format(n)
     
-            text += '{}, {}, {};\n'.format(user.name, user.city, user.point)
+            text += '{}, {}, {};\n'.format(user.name, user.city, user.total)
             if user == current_user:
                 text = '<u><b>{}</b></u>'.format(text)
             message += text
@@ -132,6 +134,6 @@ def top20(update, context):
         if user_index > 20:
             if user_index != 21:
                 message += '....\n'
-            message += '{}. {}, {}, {};'.format(user_index, current_user.name, current_user.city, current_user.point)
+            message += '{}. {}, {}, {};'.format(user_index, current_user.name, current_user.city, current_user.total)
         
         update.message.reply_text(message, parse_mode = telegram.ParseMode.HTML)

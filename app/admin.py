@@ -2,7 +2,7 @@ from django.contrib import admin
 from app.models import *
 
 class Bot_userAdmin(admin.ModelAdmin):
-    list_display = ('user_id', 'name', 'phone', 'lang', 'point')
+    list_display = ('user_id', 'name', 'phone', 'lang', 'point', 'total')
     search_fields = ('user_id', 'name', 'phone')
 
 class ProductAdmin(admin.ModelAdmin):

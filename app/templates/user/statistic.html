@@ -66,21 +66,21 @@ background-image: url('{% static 'img/chint.jpg' %}'); position: fixed; z-index:
                                                                         
                                                                         
                                         {% for l in list %}
-                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
+                                        <!-- <div class="item"><span style="text-align:left;width: 200px;">{{ l.user__name }}</span>
                                           
                                           
                                             <span style="text-align:right;width: 200px;">{{ l.user__city }}</span>
                                           
                                           <span style="text-align:right;width: 200px;"><b>{{ l.total }} баллы / Осталось {{ l.user__point }}</b></span>
-                                        </div>
+                                        </div> -->
                                         
-                                        <!-- <div class="item"><span style="text-align:left;width: 200px;">{{ l.name }}</span>
+                                        <div class="item"><span style="text-align:left;width: 200px;">{{ l.name }}</span>
                                           
                                           
                                             <span style="text-align:right;width: 200px;">{{ l.city }}</span>
                                           
-                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы / {{ l.point }}</span>
-                                        </div> -->
+                                          <span style="text-align:right;width: 200px;">{{ l.total }} баллы / Осталось {{ l.point }}</span>
+                                        </div>
                                         
                                         {% endfor %}
                                                                         
