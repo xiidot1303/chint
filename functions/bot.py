@@ -17,8 +17,8 @@ def main_menu(update, context):
     keyboard=[
             [get_word('get points', update), get_word('my points', update)], 
             [get_word('get prizes', update), get_word('contact', update)], 
-            [get_word('info', update), get_word('rules', update)],
-            [get_word('settings', update), get_word('nura store', update)], 
+            [get_word('settings', update), get_word('rules', update)],
+            [get_word('info', update)], 
         ]
     bot.send_message(update.message.chat.id, get_word('main menu', update), reply_markup=ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True))
     check_username(update)
