@@ -61,6 +61,7 @@ get_points_handler = ConversationHandler(
         CONFIRM_PRODUCT: [MessageHandler(Filters.text(lang_dict['next'] + lang_dict['back']), get_points.confirm_product),
             CommandHandler('start', get_points.confirm_product)],
         SEND_AMOUNT: [MessageHandler(Filters.text, get_points.send_amount)],
+        SEND_STORE_TITLE: [MessageHandler(Filters.text, get_points.send_store_title)],
         SEND_PHOTO: [MessageHandler(Filters.photo, get_points.send_photo), CommandHandler('start', get_points.send_photo),
             MessageHandler(Filters.text(lang_dict['back']), get_points.send_photo)],
         SEND_PHOTO2: [MessageHandler(Filters.photo, get_points.send_photo2), CommandHandler('start', get_points.send_photo2),
@@ -95,6 +96,7 @@ dp.add_handler(CallbackQueryHandler(main.top20, pattern='top20'))
 dp.add_handler(MessageHandler(Filters.text(lang_dict['info']), main.info))
 dp.add_handler(MessageHandler(Filters.text(lang_dict['contact']), main.contact))
 dp.add_handler(MessageHandler(Filters.text(lang_dict['rules']), main.rule))
+dp.add_handler(MessageHandler(Filters.text(lang_dict['nura store']), main.nura_store))
 
 dp.add_handler(get_prizes_handler)
 dp.add_handler(get_points_handler)

@@ -23,6 +23,7 @@
           <th>Номер телефона</th>
           <th>Товар</th>
           <th>Количество</th>
+          <th>Магазин</th>
           <th>Фото 1</th>
           <th>Фото 2</th>
           <th>Баллы</th>
@@ -42,6 +43,7 @@
             </td>
             
             <td>{{ l.amount }}</td>
+            <td>{{ l.store }}</td>
             <td><a href="/files/{{ l.photo }}" target="_blank">
                 <img class="product_list_img" src="/files/{{ l.photo }}" alt="">
             </a></td>

@@ -62,23 +62,42 @@ def send_amount(update, context):
     
     obj = Request.objects.get(user = get_user_by_update(update), status=None)
     try:
+        if int(answer) == 0:
+            #error
+            a = 10 + "ferfr"
         obj.amount = float(answer)
         obj.point = float(answer) * float(obj.product.point)
         obj.save()
     except:
         update.message.reply_text('{}\n{}'.format(get_word('incorrect value', update), get_word('type amount of products', update)))
         return
-    
+
+    update.message.reply_text(get_word('type store title', update))
+    return SEND_STORE_TITLE
+
+@is_start
+def send_store_title(update, context):
+    bot = context.bot
+    answer = update.message.text
+    if answer == get_word('back', update):
+        update.message.reply_text(get_word('type amount of products', update), 
+            reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('back', update)]], resize_keyboard=True))
+        return SEND_AMOUNT
+
+    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+    obj.store = answer
+    obj.save()
+
     update.message.reply_text(get_word('send photo', update)) # button back is already sent
-    # try:
-    if ENVIRONMENT == 'local':
-        photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
-    else:
-        f = open('files/photos/1.jpg', 'rb')
-        photo = f
-    bot.send_photo(update.message.chat.id, photo = photo)
-    # except:
-    #     a = 0
+    try:
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
+        else:
+            f = open('files/photos/1.jpg', 'rb')
+            photo = f
+        bot.send_photo(update.message.chat.id, photo = photo)
+    except:
+        a = 0
     return SEND_PHOTO
 
 
@@ -88,9 +107,9 @@ def send_photo(update, context):
     answer = update.message.text
 
     if answer == get_word('back', update):
-        update.message.reply_text(get_word('type amount of products', update), 
+        update.message.reply_text(get_word('type store title', update), 
             reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('back', update)]], resize_keyboard=True))
-        return SEND_AMOUNT
+        return SEND_STORE_TITLE
     
     obj = Request.objects.get(user = get_user_by_update(update), status=None)
 

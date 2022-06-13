@@ -138,3 +138,8 @@ def top20(update, context):
             message += '{}. {}, {}, {};'.format(user_index, current_user.name, current_user.city, current_user.total)
         
         update.message.reply_text(message, parse_mode = telegram.ParseMode.HTML)
+
+    
+
+def nura_store(update, context):
+    pass

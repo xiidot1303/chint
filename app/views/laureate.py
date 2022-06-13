@@ -66,3 +66,24 @@ def laureate_change_status(request, pk, status):
     obj.status = status
     obj.save()
     return redirect(laureate_list)
+
+@login_required
+def laureate_delete(request, pk):
+    
+    ####
+    def check_point(obj):
+        user = obj.user
+        if obj.status != 'cancel':
+            user.point += obj.point
+            user.save()
+    #####
+    
+    if pk != 'all':
+        obj = Prizewinner.objects.get(pk=int(pk))
+        check_point(obj)
+        obj.delete()
+    else:
+        for i in Prizewinner.objects.all().exclude(status=None):
+            check_point(i)
+            i.delete()
+    return redirect(laureate_list)

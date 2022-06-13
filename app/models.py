@@ -45,6 +45,7 @@ class Request(models.Model): # to get points
     user = models.ForeignKey('Bot_user', null=True, blank=False, on_delete=models.PROTECT)
     product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.PROTECT)
     amount = models.FloatField(null=True, blank=True)
+    store = models.CharField(null=True, blank=True, max_length=255)
     photo = models.FileField(upload_to='photos/requests', null=True, blank=True)
     photo2 = models.FileField(upload_to='photos/requests', null=True, blank=True)
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed

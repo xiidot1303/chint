@@ -50,3 +50,11 @@ def to_dict(f):
 @register.filter
 def summ(a, b):
     return a + b
+
+@register.filter
+def number_for_string(n):
+    n = str(int(n))
+    n = n[::-1]
+    r = ' '.join([n[i:i+3] for i in range(0, len(n), 3)])
+    r = r[::-1]
+    return r

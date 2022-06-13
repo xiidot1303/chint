@@ -25,6 +25,13 @@
 </div>
 {% endif %}
 
+<div align="right" class="delete-all" style="margin-bottom: 20px;">
+   <a onclick="return confirm(&#39;Вы уверены, что удалить все данные?&#39;)" href="{% url 'laureate_delete' 'all' %}">
+      <button type="button" class="btn btn-dark mt-2" style="font-size: 10px; padding: 5px;"> Удалить все </button>
+
+   </a>
+
+</div>
 
 <table id="datatable" class="table data-table table-striped table-bordered" >
     <thead>
@@ -37,6 +44,7 @@
           <th>Баллы</th>
           <th>Статус</th>
           <th>Действия</th>
+          <th></th>
        </tr>
     </thead>
     <tbody>
@@ -137,6 +145,10 @@
 
             {% endif %}
 
+            <td>
+               <a class="mt-2 btn btn-primary" style="background-color: rgb(128, 45, 1);" href="{% url 'laureate_delete' l.pk %}"
+               role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="В ожидании "><i class="fas fa-trash"></i></a>
+            </td>
 
 
        </tr>

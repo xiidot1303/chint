@@ -76,6 +76,7 @@ urlpatterns = [
     # laureate
     path('laureate/list', laureate.laureate_list, name='laureate_list'),
     path('laureate/change_status/<int:pk>/<str:status>/', laureate.laureate_change_status, name='laureate_change_status'),
+    path('laureate/delete/<str:pk>/', laureate.laureate_delete, name='laureate_delete'),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static('/files/', document_root = 'files/')
