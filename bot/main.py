@@ -64,11 +64,13 @@ def rule(update, context):
     file = None
     if user.lang == 'uz':
         if obj.file_uz:
-            file = open('files/{}'.format(str(obj.file_uz)), 'rb')
+            # file = open('files/{}'.format(str(obj.file_uz)), 'rb')
+            file = 'BQACAgQAAxkBAAIfJ2OAVvtDSwp2X58pBd6uJHruddmEAAIFEgACMT4IUJEAAZhNLylsbisE'
         text = obj.text_uz
     else:
         if obj.file_ru:
-            file = open('files/{}'.format(str(obj.file_ru)), 'rb')
+            # file = open('files/{}'.format(str(obj.file_ru)), 'rb')
+            file = 'BQACAgQAAxkBAAIfKWOAVzKuBFGENgsfzTiJ7uy0TTmFAAIHEgACMT4IUGsNCkggeCbyKwQ'
         text = obj.text_ru
     try:
         try:
