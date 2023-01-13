@@ -50,7 +50,7 @@ class Request(models.Model): # to get points
     photo2 = models.FileField(upload_to='photos/requests', null=True, blank=True)
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
-    
+    date = models.DateTimeField(null=True, blank=True)
 
 class About(models.Model):
     action = models.TextField(null=True, blank=True, max_length=500)

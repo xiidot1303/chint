@@ -17,7 +17,7 @@ import telegram
 
 @login_required
 def request_list(request):
-    requests = Request.objects.filter(status='wait')
+    requests = Request.objects.filter(status='wait').order_by('-pk')
     context = {'list': requests}
     return render(request, 'request/list_request.html', context)
 

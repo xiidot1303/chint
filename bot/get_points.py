@@ -156,6 +156,7 @@ def send_photo2(update, context):
     
     update.message.reply_text(get_word('completed request', update))
     obj.status = 'wait'
+    obj.date = datetime.now()
     obj.save()
     main_menu(update,context)
     return ConversationHandler.END

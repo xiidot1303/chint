@@ -28,6 +28,7 @@
           <th>Фото 1</th>
           <th>Фото 2</th>
           <th>Баллы</th>
+          <th>Дата</th>
           <th>Действия</th>
        </tr>
     </thead>
@@ -53,7 +54,7 @@
                 <img class="product_list_img" src="/files/{{ l.photo2 }}" alt="">
             </a></td>
             <td>{{ l.point }}</td>
-            
+            <td>{{ l.date|date:"d.m.Y H:i" }}</td>
 
 
             <td><a class="mt-2 btn btn-primary" style="background-color: rgb(19, 160, 19);" href="{% url 'request_change_status' l.pk 'conf' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="Принять"><i class="fas fa-check-circle"></i></a>
