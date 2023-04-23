@@ -17,7 +17,7 @@ persistence = PicklePersistence(filename='persistencebot')
 
 if ENVIRONMENT != 'local': # in production
     updater = 1213
-    dp = Dispatcher(bot_obj, None, workers=0, use_context=True, persistence=persistence)
+    dp = Dispatcher(bot_obj, None, workers=100, use_context=True, persistence=persistence)
 else: # in local computer
     updater = Updater(token=TELEGRAM_BOT_API_TOKEN, use_context=True, persistence=persistence)
     dp = updater.dispatcher
