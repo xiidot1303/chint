@@ -1,49 +1,10 @@
-"""chint URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView
-
-from app.views.botwebhook import bot_webhook
-from app.views import main, product, request, user, administration, prize, laureate
-
-from config import TELEGRAM_BOT_API_TOKEN, ENVIRONMENT
+from app2.views import main, product, request, user, administration, prize, laureate
 
 
 urlpatterns = [
-    path('app2/', include('app2.urls')),
-    #admin
-    path('xiidot1303/', admin.site.urls),
-    path(TELEGRAM_BOT_API_TOKEN, bot_webhook),
-
-    # auth
-    path('accounts/login/', LoginView.as_view()),
-    path('changepassword/', PasswordChangeView.as_view(template_name = 'registration/change_password.html'), name='editpassword'),
-    path('changepassword/done/', PasswordChangeDoneView.as_view(template_name = 'registration/afterchanging.html'), name='password_change_done'),
-    # path('profile', change_profile, name = "change_profile"),
-    path('logout/', LogoutView.as_view(), name='logout'),
-
     # main
     path('', request.request_list, name='main_menu'),
-
-    # get file
-    path('files/<str:folder>/<str:subfolder>/<str:file>/', main.get_photos, name='get_photo'),
-    
 
     # product
     path('product/list', product.product_list, name='product_list'),
@@ -80,4 +41,4 @@ urlpatterns = [
     path('laureate/delete/<str:pk>/', laureate.laureate_delete, name='laureate_delete'),
 
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static('/files/', document_root = 'files/')
+]

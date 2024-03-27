@@ -1,62 +1,15 @@
 from django.db import models
 from django.db.models import Q
 
-class Bot_user(models.Model):
-    user_id = models.IntegerField(null=True)
-    name = models.CharField(null=True, blank=True, max_length=200)
-    username = models.CharField(null=True, blank=True, max_length=200)
-    firstname = models.CharField(null=True, blank=True, max_length=500)
-    city = models.CharField(null=True, blank=True, max_length=50)
-    phone = models.CharField(null=True, blank=True, max_length=40)
-    lang = models.CharField(null=True, blank=True, max_length=5)
-    date = models.DateTimeField(db_index = True, null=True, auto_now_add=True, blank=True)
-    point = models.FloatField(null=True, blank=True, default=0)
-    point2 = models.FloatField(null=True, blank=True, default=0)
-    total = models.FloatField(null=True, blank=True, default=0)
-    total2 = models.FloatField(null=True, blank=True, default=0)
-    CONDITION_CHOICES = [
-        (1, "Action 1"),
-        (2, "Action 2")
-    ]
-    condition = models.IntegerField(null=True, blank=True, choices=CONDITION_CHOICES, default=2)
 
-    def __str__(self) -> str:
-        try:
-            return self.name + ' ' + str(self.phone)
-        except:
-            return super().__str__()
-
-
-    @property
-    def spent_for_prizes(self):
-        points = 0
-        for p in Prizewinner.objects.filter(user=self).filter(~Q(status = 'cancel') & ~Q(status = None)):
-            points += p.point
-        return points
-
-    def save(self, *args, **kwargs):
-        self.total = self.point + self.spent_for_prizes
-        super(Bot_user, self).save(*args, **kwargs)
-        
-
-
-class Product(models.Model):
-    title = models.CharField(null=True, blank=True, max_length=200)
-    description = models.TextField(null=True, blank=True, max_length=1000)
-    photo = models.FileField(upload_to='photos/products', null=True, blank=True)
-    point = models.FloatField(null=True, blank=True)
-
-    def __str__(self) -> str:
-        return self.title
 
 class Request(models.Model): # to get points
-    user = models.ForeignKey('Bot_user', null=True, blank=False, on_delete=models.PROTECT)
-    product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.PROTECT)
+    user = models.ForeignKey('app.Bot_user', null=True, blank=False, on_delete=models.PROTECT, related_name='app2_bot_user')
     amount = models.FloatField(null=True, blank=True)
     store = models.CharField(null=True, blank=True, max_length=255)
     photo = models.FileField(upload_to='photos/requests', null=True, blank=True)
     photo2 = models.FileField(upload_to='photos/requests', null=True, blank=True)
-    point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [product.point], save it, because product will may be changed
+    point = models.FloatField(null=True, blank=True)
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
     date = models.DateTimeField(null=True, blank=True)
 
@@ -102,8 +55,8 @@ class Prize(models.Model):
         return self.title
     
 class Prizewinner(models.Model):
-    user = models.ForeignKey('Bot_user', null=True, blank=False, on_delete=models.PROTECT)
-    prize = models.ForeignKey('Prize', null=True, blank=True, on_delete=models.PROTECT)
+    user = models.ForeignKey('app.Bot_user', null=True, blank=False, on_delete=models.PROTECT, related_name='app2_prizewinner_bot_user')
+    prize = models.ForeignKey('app2.Prize', null=True, blank=True, on_delete=models.PROTECT)
     amount = models.FloatField(null=True, blank=True)
     point = models.FloatField(null=True, blank=True) # after calculate point by [amount] * [prize.point], save it, because prize will may be changed
     status = models.CharField(null=True, blank=True, max_length=20, choices=(

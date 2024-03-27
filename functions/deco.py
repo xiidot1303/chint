@@ -2,6 +2,7 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton
 import telegram
 from bot.uz_ru import lang_dict
 from app.models import *
+from app2.models import Request as Request2, Prizewinner as Prizewinner2
 from telegram.ext import ConversationHandler
 from datetime import date, datetime
 from bot.conversationList import *
@@ -44,10 +45,10 @@ def is_start(func):    # This deco break registration if user send /start.
            
             # delete unfinished requests
             user = get_user_by_update(update)
-            for r in Request.objects.filter(user=user, status=None):
-                r.delete()
-            for p in Prizewinner.objects.filter(user=user, status=None):
-                p.delete()
+            Request.objects.filter(user=user, status=None).delete()
+            Prizewinner.objects.filter(user=user, status=None).delete()
+            Request2.objects.filter(user=user, status=None).delete()
+            Prizewinner2.objects.filter(user=user, status=None).delete()
             main_menu(args[0], args[1])
             return ConversationHandler.END
         else:

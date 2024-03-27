@@ -21,14 +21,24 @@ def settings(update, context):
     return ALL_SETTINGS
 
 def get_points(update, context):
-    
-    make_button_products(update, context)
-    return SELECT_PRODUCT
+    con = get_condition_by_update(update)
+    if con == 1:
+        make_button_products(update, context)
+        return SELECT_PRODUCT
+    elif con == 2:
+        markup = ReplyKeyboardMarkup([[get_word('main menu', update)]], resize_keyboard=True)
+        update.message.reply_text(get_word('type store title', update), reply_markup = markup)
+        return SEND_STORE_TITLE_NEW
 
 def get_prizes(update, context):
-    
-    make_button_prizes(update, context)
-    return SELECT_PRIZE
+    con = get_condition_by_update(update)
+    if con == 1:
+        make_button_prizes(update, context)
+        return SELECT_PRIZE
+    elif con == 2:
+        make_button_prizes2(update, context)
+        return SELECT_PRIZE_NEW
+
 
 def info(update, context):
     bot = context.bot

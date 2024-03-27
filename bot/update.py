@@ -6,7 +6,7 @@ import os
 from config import TELEGRAM_BOT_API_TOKEN, ENVIRONMENT
 import requests
 
-from bot import login, main, settings, get_points, get_prize
+from bot import login, main, settings, get_points, get_prize, get_points2, get_prize2
 from bot.conversationList import *
 from bot.uz_ru import lang_dict
 
@@ -66,6 +66,13 @@ get_points_handler = ConversationHandler(
             MessageHandler(Filters.text(lang_dict['back']), get_points.send_photo)],
         SEND_PHOTO2: [MessageHandler(Filters.photo, get_points.send_photo2), CommandHandler('start', get_points.send_photo2),
             MessageHandler(Filters.text(lang_dict['back']), get_points.send_photo2)],
+
+        # For action 2
+        SEND_STORE_TITLE_NEW: [MessageHandler(Filters.text, get_points2.send_store_title)],
+        SEND_PHOTO_NEW: [MessageHandler(Filters.photo, get_points2.send_photo), CommandHandler('start', get_points2.send_photo),
+            MessageHandler(Filters.text(lang_dict['back']), get_points2.send_photo)],
+        SEND_PHOTO2_NEW: [MessageHandler(Filters.photo, get_points2.send_photo2), CommandHandler('start', get_points2.send_photo2),
+            MessageHandler(Filters.text(lang_dict['back']), get_points2.send_photo2)],
         
     },
     fallbacks=[],
@@ -83,6 +90,15 @@ get_prizes_handler = ConversationHandler(
         SEND_AMOUNT_PRIZE: [MessageHandler(Filters.text, get_prize.send_amount_prize)],
         CONFIRM_EXCHANGE: [MessageHandler(Filters.text(lang_dict['yes'] + lang_dict['no'] + lang_dict['back']), get_prize.confirm_exchange),
             CommandHandler('start', get_prize.confirm_exchange)],
+
+        # For action 2
+        SELECT_PRIZE_NEW: [MessageHandler(Filters.text, get_prize2.select_prize)],
+        CONFIRM_PRIZE_NEW: [MessageHandler(Filters.text(lang_dict['next'] + lang_dict['back']), get_prize2.confirm_prize),
+            CommandHandler('start', get_prize2.confirm_prize)],
+        SEND_AMOUNT_PRIZE_NEW: [MessageHandler(Filters.text, get_prize2.send_amount_prize)],
+        CONFIRM_EXCHANGE_NEW: [MessageHandler(Filters.text(lang_dict['yes'] + lang_dict['no'] + lang_dict['back']), get_prize2.confirm_exchange),
+            CommandHandler('start', get_prize2.confirm_exchange)],
+        
     },
     fallbacks=[],
     name='get_prizes',

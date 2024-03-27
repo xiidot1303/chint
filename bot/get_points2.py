@@ -1,0 +1,88 @@
+from app2.models import *
+from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
+from bot.conversationList import *
+from telegram.ext import ConversationHandler
+from functions.bot import *
+from functions.deco import *
+from config import ENVIRONMENT
+
+@is_start
+def send_store_title(update, context):
+    bot = context.bot
+    answer = update.message.text
+
+    Request.objects.create(user = get_user_by_update(update), store = answer)
+
+    update.message.reply_text(get_word('send photo', update)) # button back is already sent
+    try:
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
+        else:
+            f = open('files/photos/1.jpg', 'rb')
+            photo = f
+        reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('back', update)]], resize_keyboard=True)
+        bot.send_photo(update.message.chat.id, photo = photo, reply_markup = reply_markup)
+    except:
+        a = 0
+    return SEND_PHOTO_NEW
+
+
+@is_start
+def send_photo(update, context):
+    bot = context.bot
+    answer = update.message.text
+
+    if answer == get_word('back', update):
+        update.message.reply_text(get_word('type store title', update), 
+            reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('main menu', update)]], resize_keyboard=True))
+        return SEND_STORE_TITLE_NEW
+    
+    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+
+    photo_id = bot.getFile(update.message.photo[-1].file_id)
+    *args, file_name = str(photo_id.file_path).split('/')
+    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    obj.photo = str(d_photo).replace('files/', '')
+    obj.save()
+    
+    update.message.reply_text(get_word('send photo2', update)) # button back is already sent
+    try:
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGWKi9dUAAasdOPYiE8wfSf7kzV9--wACer4xG1RKCEkSXrgJZkRtCgEAAwIAA3MAAyQE'
+        else:
+            f = open('files/photos/2.jpg', 'rb')
+            photo = f
+        bot.send_photo(update.message.chat.id, photo = photo)
+    except:
+        a = 0
+    return SEND_PHOTO2_NEW
+
+@is_start
+def send_photo2(update, context):
+    bot = context.bot
+    answer = update.message.text
+
+    if answer == get_word('back', update):
+        update.message.reply_text(get_word('send photo', update))
+        if ENVIRONMENT == 'local':
+            photo = 'AgACAgIAAxkBAAINGGKi9Zl-LVX9KXk8yJE3Lb_41-4uAAJ4vjEbVEoISUjmqYFe4iE0AQADAgADcwADJAQ'
+        else:
+            f = open('files/photos/1.jpg', 'rb')
+            photo = f
+        bot.send_photo(update.message.chat.id, photo = photo)
+        return SEND_PHOTO_NEW
+    
+    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+
+    photo_id = bot.getFile(update.message.photo[-1].file_id)
+    *args, file_name = str(photo_id.file_path).split('/')
+    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    obj.photo2 = str(d_photo).replace('files/', '')
+    obj.save()
+    
+    update.message.reply_text(get_word('completed request', update))
+    obj.status = 'wait'
+    obj.date = datetime.now()
+    obj.save()
+    main_menu(update,context)
+    return ConversationHandler.END

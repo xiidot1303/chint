@@ -1,0 +1,63 @@
+{% extends 'layout/basic.html' %}
+
+{% load static %}
+
+{% block title %}
+Добавить вопрос
+{% endblock %}
+
+{% block main %}
+
+
+{% if alert %}
+<div class="alert alert-success" role="alert">
+    <div class="iq-alert-text">Сообщение <b>успешно</b> отправлено</div>
+ </div>
+{% else %}
+{% endif %}
+<form method = "post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+    {% for f in form %}
+
+        {% if forloop.counter0 == 2 %}
+        </div>
+        <div class="row">
+        {% else %}
+        {% endif %}
+        <div class="col">
+            {% if f.id_for_label == 'id_photo' %}
+            <div class="custom-file mb-3">
+                {{ f.errors }} 
+                <!-- <p>Custom file:</p> -->
+                <label class="custom-file-label" for="id_photo">Фото</label>
+                {{ f }}
+            </div>
+
+            {% elif f.id_for_label == 'id_all' %}
+            <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                {{ f.errors }} 
+                {{ f }}
+                <label class="custom-control-label" for="id_all">Всем пользователям</label>   
+            </div>
+
+            {% else %}
+
+
+            <div class="form-group">
+                    {{ f.errors }} 
+                    {{ f.label_tag }}    {{ f }}
+            </div>
+            {% endif %}
+        </div>
+        
+    {% endfor %}
+    </div>
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </div>
+
+</form>
+
+
+{% endblock %}
