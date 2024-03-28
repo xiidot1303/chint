@@ -7,6 +7,7 @@ load_dotenv(os.path.join('.env'))
 TELEGRAM_BOT_API_TOKEN=os.environ.get('TELEGRAM_BOT_API_TOKEN')
 ENVIRONMENT=os.environ.get('ENVIRONMENT')
 URL=os.environ.get('URL')
+URL2=os.environ.get('URL2')
 
 DB_HOST=os.environ.get('DB_HOST')
 DB_PORT=os.environ.get('DB_PORT')

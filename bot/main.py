@@ -122,10 +122,11 @@ def my_points(update, context):
     user = get_user_by_update(update)
     con = get_condition_by_update(update)
     user_point = user.point if con == 1 else user.point2
+    statistic_url = config.URL if con == 1 else config.URL2
     # points = Request.objects.filter(user = user).values('user__name').annotate(p=Sum(F('point')*F('amount')))[0]['p']
     msg = '<b>{}</b>: {}'.format(get_word('your points', update), user_point)
     # msg += '\n\n👉 <a href="{}/statistic">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
-    msg += '\n\n👉 <a href="{}">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
+    msg += '\n\n👉 <a href="{}">🔗{}</a> 👈'.format(statistic_url, get_word('action results', update))
     i_top20 = InlineKeyboardButton(text=get_word('top20', update), callback_data='top20')
     update.message.reply_text(msg, reply_markup = InlineKeyboardMarkup([[i_top20]]), parse_mode = telegram.ParseMode.HTML)
 
