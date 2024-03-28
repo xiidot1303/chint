@@ -9,6 +9,7 @@ class Request(models.Model): # to get points
     store = models.CharField(null=True, blank=True, max_length=255)
     photo = models.FileField(upload_to='photos/requests', null=True, blank=True)
     photo2 = models.FileField(upload_to='photos/requests', null=True, blank=True)
+    photo3 = models.FileField(upload_to='photos/requests', null=True, blank=True)
     point = models.FloatField(null=True, blank=True, default=0)
     status = models.CharField(null=True, blank=True, max_length=20, choices=(('wait', 'waiting'), ('cancel', 'cancelled'), ('conf', 'confirmed')))
     date = models.DateTimeField(null=True, blank=True)

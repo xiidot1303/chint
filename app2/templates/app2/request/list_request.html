@@ -25,6 +25,7 @@
           <th>Магазин</th>
           <th>Фото 1</th>
           <th>Фото 2</th>
+          <th>Фото 3</th>
           <th>Баллы</th>
           <th>Дата</th>
           <th>Действия</th>
@@ -45,6 +46,9 @@
             </a></td>
             <td><a href="/files/{{ l.photo2 }}" target="_blank">
                 <img class="product_list_img" src="/files/{{ l.photo2 }}" alt="">
+            </a></td>
+            <td><a href="/files/{{ l.photo3 }}" target="_blank">
+                <img class="product_list_img" src="/files/{{ l.photo3 }}" alt="">
             </a></td>
             <td>{{ l.point }}</td>
             <td>{{ l.date|date:"d.m.Y H:i" }}</td>

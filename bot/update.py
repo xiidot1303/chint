@@ -73,6 +73,8 @@ get_points_handler = ConversationHandler(
             MessageHandler(Filters.text(lang_dict['back']), get_points2.send_photo)],
         SEND_PHOTO2_NEW: [MessageHandler(Filters.photo, get_points2.send_photo2), CommandHandler('start', get_points2.send_photo2),
             MessageHandler(Filters.text(lang_dict['back']), get_points2.send_photo2)],
+        SEND_PHOTO3_NEW: [MessageHandler(Filters.photo, get_points2.send_photo3), CommandHandler('start', get_points2.send_photo3),
+            MessageHandler(Filters.text(lang_dict['back']), get_points2.send_photo3)],
         
     },
     fallbacks=[],

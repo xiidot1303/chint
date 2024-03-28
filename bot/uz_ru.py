@@ -72,6 +72,15 @@ lang_dict = {
     
     'send photo2': ["""Tasdiqlash uchun rasm jo'nating\n(Stabilizator o'rnatilgani rasmi, quyidagi rasm kabi)""", 
         """Отправьте фото для подтверждения\n(Фото установленного стабилизатора. Как на картинке ниже)"""],
+    
+    'send photo_action2': ["""Tasdiqlash uchun rasm jo'nating\n(Sotuv amalga oshgan do'kon yonida, quyidagi rasm kabi)""", 
+        """Отправьте фото для подтверждения\n(Фото с магазина где была совершена покупка. Как на картинке ниже)"""],
+    
+    'send photo2_action2': ["""Tasdiqlash uchun rasm jo'nating\n(Ijod mahsulingiz oldida, quyidagi rasm kabi)""", 
+        """Отправьте фото для подтверждения\n(Фото установленного стабилизатора. Как на картинке ниже)"""],
+    
+    'send photo3_action2': ["""Tasdiqlash uchun rasm jo'nating\n(Ushbu mahsulotlar yordamida yig'ilgan shitingiz rasmi, quyidagi rasm kabi)""", 
+        """Отправьте фото для подтверждения\n(Фото установленного стабилизатора. Как на картинке ниже)"""],
 
     'completed request': ["""Rahmat! Sizning so'rovingiz qabul qilindi va tez orada ko'rib chiqiladi""", 
         """Спасибо! Ваша заявка принята и будет опубликована после модерации"""],
