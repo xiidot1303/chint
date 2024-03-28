@@ -70,7 +70,7 @@ def points_statistic(request):
     #     list[n]['total'] = user.spent_for_prizes + user.point
     #     n += 1
 
-    list = Bot_user.objects.filter().exclude(phone=None).order_by('-total')
+    list = Bot_user.objects.filter().exclude(phone=None).order_by('-total2')
 
     about = About.objects.get(pk=1)
     context = {'list': list, 'about': about}
@@ -85,7 +85,7 @@ def user_change_point(request, pk):
         if form.is_valid():
             point = form.cleaned_data['point']
             user.point2 += int(point)
-            if user.point < 0:
+            if user.point2 < 0:
                 messages.warning(request, 'Баллов не может быть меньше 0')
                 user.point2 -= int(point)
                 

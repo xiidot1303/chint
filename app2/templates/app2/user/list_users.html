@@ -11,7 +11,7 @@
 {% block main %}
 <h4 class="font-weight-bold" style="margin-bottom: 30px;">Пользователи</h4>
 
-<a href="{% url 'user_get_excel' %}">
+<a href="{% url 'user_get_excel2' %}">
     <button type="button" class="btn btn-outline-primary" style="margin-bottom: 20px;">Excel</button>
 </a>
 
@@ -46,15 +46,15 @@
                 {% endif %}
             </td>
             <td>{{ u.city }}</td>
-            <td>{{ u.point }}
-                <a href="{% url 'user_change_point' u.pk %}" class="mt-2 btn btn-primary" 
+            <td>{{ u.point2 }}
+                <a href="{% url 'user_change_point2' u.pk %}" class="mt-2 btn btn-primary" 
                     style="background-color: rgb(117, 117, 117); font-size: 15px; padding: 10px; margin: 0 0px 10px 20px;"  
                     data-toggle="tooltip" title="">+/-</a>
             </td>
-            <td>{{ u.spent_for_prizes }} из {{ u.point|summ:u.spent_for_prizes }}</td>
+            <td>{{ u.spent_for_prizes2 }} из {{ u.point2|summ:u.spent_for_prizes2 }}</td>
             <!-- <td>{{ u|overall_points }}</td> -->
             <td>
-                <a href="{% url 'user_history' u.pk %}" class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);"  
+                <a href="{% url 'user_history2' u.pk %}" class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);"  
                     data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-eye" title=""></i></a>
             </td>
             

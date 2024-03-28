@@ -18,4 +18,4 @@ application = get_wsgi_application()
 
 if ENVIRONMENT == 'local' and TELEGRAM_BOT_API_TOKEN:
     from bot.update import updater
-    # updater.start_polling()
+    updater.start_polling()

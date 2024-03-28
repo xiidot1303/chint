@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from app2.models import Prizewinner as _Prizewinner2
 
 class Bot_user(models.Model):
     user_id = models.IntegerField(null=True)
@@ -34,8 +35,16 @@ class Bot_user(models.Model):
             points += p.point
         return points
 
+    @property
+    def spent_for_prizes2(self):
+        points = 0
+        for p in _Prizewinner2.objects.filter(user=self).filter(~Q(status = 'cancel') & ~Q(status = None)):
+            points += p.point
+        return points
+
     def save(self, *args, **kwargs):
         self.total = self.point + self.spent_for_prizes
+        self.total2 = self.point2 + self.spent_for_prizes2
         super(Bot_user, self).save(*args, **kwargs)
         
 
