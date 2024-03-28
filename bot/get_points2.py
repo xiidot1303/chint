@@ -1,4 +1,4 @@
-from app2.models import *
+from app2.models import Request as Request2
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 from bot.conversationList import *
 from telegram.ext import ConversationHandler
@@ -11,7 +11,7 @@ def send_store_title(update, context):
     bot = context.bot
     answer = update.message.text
 
-    Request.objects.create(user = get_user_by_update(update), store = answer)
+    Request2.objects.create(user = get_user_by_update(update), store = answer)
 
     update.message.reply_text(get_word('send photo', update)) # button back is already sent
     try:
@@ -37,7 +37,7 @@ def send_photo(update, context):
             reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('main menu', update)]], resize_keyboard=True))
         return SEND_STORE_TITLE_NEW
     
-    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+    obj = Request2.objects.get(user = get_user_by_update(update), status=None)
 
     photo_id = bot.getFile(update.message.photo[-1].file_id)
     *args, file_name = str(photo_id.file_path).split('/')
@@ -72,7 +72,7 @@ def send_photo2(update, context):
         bot.send_photo(update.message.chat.id, photo = photo)
         return SEND_PHOTO_NEW
     
-    obj = Request.objects.get(user = get_user_by_update(update), status=None)
+    obj = Request2.objects.get(user = get_user_by_update(update), status=None)
 
     photo_id = bot.getFile(update.message.photo[-1].file_id)
     *args, file_name = str(photo_id.file_path).split('/')

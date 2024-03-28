@@ -21,7 +21,6 @@
           <th>ФИО</th>
           <th>Номер телефона</th>
           <th>Город</th>
-          <th>Товар</th>
           <th>Количество</th>
           <th>Магазин</th>
           <th>Фото 1</th>
@@ -39,11 +38,6 @@
             <td>{{ l.user.phone }}</td>
             <td>{{ l.user.city }}</td>
             
-            <td>
-                <a class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);" onclick="create_card({{ l.product|text_maker }}, '/files/{{ l.product.photo }}')" role="button"  data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-file-alt"></i></a>
-               
-            </td>
-            
             <td>{{ l.amount }}</td>
             <td>{{ l.store }}</td>
             <td><a href="/files/{{ l.photo }}" target="_blank">
@@ -56,14 +50,19 @@
             <td>{{ l.date|date:"d.m.Y H:i" }}</td>
 
 
-            <td><a class="mt-2 btn btn-primary" style="background-color: rgb(19, 160, 19);" href="{% url 'request_change_status' l.pk 'conf' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="Принять"><i class="fas fa-check-circle"></i></a>
+            <td>
+               <!-- <a class="mt-2 btn btn-primary" style="background-color: rgb(19, 160, 19);" href="{% url 'request_change_status2' l.pk 'conf' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)" data-toggle="tooltip" title="Принять"><i class="fas fa-check-circle"></i></a> -->
+               <button type="button" target="_blank" class="mt-2 btn btn-success"
+               data-toggle="modal" data-target="#confirm{{ l.pk }}Modal">
+               <i class="fas fa-check"></i>
+           </button>
                <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Принять</div>
                </div> -->
 
 
-               <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'request_change_status' l.pk 'cancel' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a>
+               <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'request_change_status2' l.pk 'cancel' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a>
                <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Отменить</div>
@@ -71,6 +70,39 @@
 
             </td>
        </tr>
+
+
+                       <!-- Modal -->
+                       <div class="modal fade" id="confirm{{ l.pk }}Modal" tabindex="-1" role="dialog" aria-labelledby="confirm{{ l.pk }}ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="confirm{{ l.pk }}ModalLabel">
+                                    {{ l.user.name }}
+                                 </h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <form action="{% url 'request_change_status2' l.pk 'conf' %}" method="post">
+                                  {% csrf_token %}
+                                  <div class="modal-body">
+                                    <label for="point{{ l.pk }}">
+                                        Баллы:
+                                    </label>
+                                    
+                                     <input class="form-control" type="number" name="point" id="point{{ l.pk }}" required>
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="submit" class="btn btn-primary" >Подтверждать</button>
+                                  </div>
+    
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+
+
        {% endfor %}
     </tbody>
 </table>

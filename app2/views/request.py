@@ -24,14 +24,19 @@ def request_list(request):
 @login_required
 def request_change_status(request, pk, status):
     obj = Request.objects.get(pk=pk)
+    if request.method == 'POST':
+        r_point = request.POST['point']
+        obj.point = float(r_point)
+        obj.save()
+    
     about = About.objects.get(pk=1)
     user = obj.user
     point = 0
     if status == 'wait' and obj.status == 'conf':
-        user.point -= obj.point
+        user.point2 -= obj.point
         point = '{} {}'.format(str(0 - obj.point), '⬇️')
     elif status == 'conf' and obj.status == 'wait':
-        user.point += obj.point
+        user.point2 += obj.point
         point = '{} {}'.format(obj.point, '⬆️')
     user.save()
     obj.status = status
@@ -47,13 +52,9 @@ def request_change_status(request, pk, status):
     elif status == 'wait':
         message += get_string('your request is restored', user)
 
-    message += """\n<i>
-    {text_product}: {product};
-    {text_amount}: {amount};</i>
+    message += """\n
     <b>{text_point}: {point};</b>
     """.format(
-        text_product = get_string('product', user), product = obj.product.title,
-        text_amount = get_string('amount', user), amount = obj.amount,
         text_point = get_string('point', user), point = point,
     )
 
