@@ -7,12 +7,12 @@ from django.db.models.functions import TruncDay
 from django.db.models import Count, Sum
 
 from datetime import datetime, timedelta
-from app.models import *
+from app2.models import *
 
 
 @login_required
 def main_menu(request):
-    return render(request, 'main/main_menu.html')
+    return render(request, 'app2/main/main_menu.html')
 
 
 @login_required

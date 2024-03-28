@@ -9,8 +9,8 @@ from django.db.models import Count
 from django.contrib import messages
 
 from datetime import datetime, timedelta
-from app.models import *
-from app.forms import *
+from app2.models import *
+from app2.forms import *
 from functions.get_object import *
 from config import TELEGRAM_BOT_API_TOKEN
 import telegram
@@ -20,7 +20,7 @@ import telegram
 def laureate_list(request):
     laureates = Prizewinner.objects.all().exclude(status=None).order_by('-pk')
     context = {'list': laureates}
-    return render(request, 'laureate/list_laureate.html', context)
+    return render(request, 'app2/laureate/list_laureate.html', context)
 
 @login_required
 def laureate_change_status(request, pk, status):

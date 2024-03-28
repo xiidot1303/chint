@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-class app(AppConfig):
+class app2(AppConfig):
     name = 'app2'
 
     def ready(self):

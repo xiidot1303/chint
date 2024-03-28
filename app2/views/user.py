@@ -19,14 +19,14 @@ import pandas as pd
 def user_list(request):
     users = Bot_user.objects.all()
     context = {'users': users}
-    return render(request, 'user/list_users.html', context)
+    return render(request, 'app2/user/list_users.html', context)
 
 @login_required
 def user_history(request, user_pk):
     requests = Request.objects.filter(Q(status = 'conf') | Q(status = 'cancel'), user__pk = user_pk).order_by('-pk')
     user = Bot_user.objects.get(pk=user_pk)
     context = {'list': requests, 'bot_user': user}
-    return render(request, 'user/user_history.html', context)
+    return render(request, 'app2/user/user_history.html', context)
 
 @login_required
 def user_get_excel(request):
@@ -45,10 +45,10 @@ def user_get_excel(request):
     df['Номер телефона'] = list(Bot_user.objects.all().values_list('phone', flat=True))
     df['Username'] = list(Bot_user.objects.all().values_list('username', flat=True))
     df['Город'] = list(Bot_user.objects.all().values_list('city', flat=True))
-    df['Баллы'] = list(Bot_user.objects.all().values_list('point', flat=True))
+    df['Баллы'] = list(Bot_user.objects.all().values_list('point2', flat=True))
     for user in Bot_user.objects.all():
         df['Снял'].append(user.spent_for_prizes)
-        df['Общий'].append(user.spent_for_prizes + user.point)
+        df['Общий'].append(user.spent_for_prizes + user.point2)
 
     # df['Баллы'] = [overall_points(user) for user in Bot_user.objects.all()]
 
@@ -74,7 +74,7 @@ def points_statistic(request):
 
     about = About.objects.get(pk=1)
     context = {'list': list, 'about': about}
-    return render(request, 'user/statistic.html', context)
+    return render(request, 'app2/user/statistic.html', context)
 
 
 def user_change_point(request, pk):
@@ -84,14 +84,14 @@ def user_change_point(request, pk):
         form = UserChangePointForm(request.POST)
         if form.is_valid():
             point = form.cleaned_data['point']
-            user.point += int(point)
+            user.point2 += int(point)
             if user.point < 0:
                 messages.warning(request, 'Баллов не может быть меньше 0')
-                user.point -= int(point)
+                user.point2 -= int(point)
                 
             else:
                 user.save()
                 return redirect(user_list)
     
     context = {'form': form, 'bot_user': user}
-    return render(request, 'user/user_change_point.html', context)
+    return render(request, 'app2/user/user_change_point.html', context)

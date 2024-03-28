@@ -22,4 +22,4 @@ class RuleEditView(LoginRequiredMixin, UpdateView):
     model = Rule
     form_class = RuleForm
     template_name = 'administration/rule_update.html'
-    success_url = '/rule/update/1/'
+    success_url = '/app2/rule/update/1/'

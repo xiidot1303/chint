@@ -8,8 +8,8 @@ from django.db.models.functions import TruncDay
 from django.db.models import Count
 
 from datetime import datetime, timedelta
-from app.models import *
-from app.forms import *
+from app2.models import *
+from app2.forms import *
 from functions.get_object import *
 from config import TELEGRAM_BOT_API_TOKEN
 import telegram
@@ -19,7 +19,7 @@ import telegram
 def request_list(request):
     requests = Request.objects.filter(status='wait').order_by('-pk')
     context = {'list': requests}
-    return render(request, 'request/list_request.html', context)
+    return render(request, 'app2/request/list_request.html', context)
 
 @login_required
 def request_change_status(request, pk, status):
