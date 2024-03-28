@@ -20,14 +20,14 @@ def prize_list(request):
     return render(request, 'app2/prize/list_prize.html', context)
 
 class PrizeCreateView(CreateView, LoginRequiredMixin):
-    template_name = 'prize/create_prize.html'
+    template_name = 'app2/prize/create_prize.html'
     form_class = PrizeForm
     success_url = '/app2/prize/list'
 
 class PrizeEditView(UpdateView, LoginRequiredMixin):
     model = Prize
     form_class = PrizeForm
-    template_name = 'prize/update_prize.html'
+    template_name = 'app2/prize/update_prize.html'
     success_url = '/app2/prize/list'
 
 @login_required

@@ -15,11 +15,11 @@ from app2.forms import *
 class AboutEditView(LoginRequiredMixin, UpdateView):
     model = About
     form_class = AboutForm
-    template_name = 'administration/about_update.html'
+    template_name = 'app2/administration/about_update.html'
     success_url = '/app2/about/update/1/'
     
 class RuleEditView(LoginRequiredMixin, UpdateView):
     model = Rule
     form_class = RuleForm
-    template_name = 'administration/rule_update.html'
+    template_name = 'app2/administration/rule_update.html'
     success_url = '/app2/rule/update/1/'

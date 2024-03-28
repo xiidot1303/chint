@@ -47,8 +47,8 @@ def user_get_excel(request):
     df['Город'] = list(Bot_user.objects.all().values_list('city', flat=True))
     df['Баллы'] = list(Bot_user.objects.all().values_list('point2', flat=True))
     for user in Bot_user.objects.all():
-        df['Снял'].append(user.spent_for_prizes)
-        df['Общий'].append(user.spent_for_prizes + user.point2)
+        df['Снял'].append(user.spent_for_prizes2)
+        df['Общий'].append(user.spent_for_prizes2 + user.point2)
 
     # df['Баллы'] = [overall_points(user) for user in Bot_user.objects.all()]
 

@@ -30,12 +30,12 @@ def laureate_change_status(request, pk, status):
 
     # give point if cancelled request
     if status == 'cancel':
-        user.point += obj.point
+        user.point2 += obj.point
         user.save()
 
     if status != 'cancel' and obj.status == 'cancel':
-        user.point -= obj.point
-        if user.point < 0:
+        user.point2 -= obj.point
+        if user.point2 < 0:
             messages.warning(request, 'У пользователя недостаточно баллов')
             return redirect(laureate_list)
         user.save()
@@ -74,7 +74,7 @@ def laureate_delete(request, pk):
     def check_point(obj):
         user = obj.user
         if obj.status != 'cancel':
-            user.point += obj.point
+            user.point2 += obj.point
             user.save()
     #####
     
