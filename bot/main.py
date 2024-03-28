@@ -2,6 +2,7 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, I
 from telegram.ext import ConversationHandler
 
 from app.models import *
+from app2.models import About as About2, Rule as Rule2
 from bot.conversationList import SELECT_LANG, ALL_SETTINGS
 from functions.bot import *
 from django.db.models import Sum, F
@@ -42,7 +43,12 @@ def get_prizes(update, context):
 
 def info(update, context):
     bot = context.bot
-    obj = About.objects.get(pk=1)
+    con = get_condition_by_update(update)
+    if con == 1:
+        obj = About.objects.get(pk=1)
+    elif con == 2:
+        obj = About2.objects.get(pk=1)
+
     # *args, file_type = str(obj.file).split('.')
     user = get_user_by_update(update)
     if user.lang == 'uz':
@@ -68,7 +74,11 @@ def info(update, context):
 
 def rule(update, context):
     bot = context.bot
-    obj = Rule.objects.get(pk=1)
+    con = get_condition_by_update(update)
+    if con == 1:
+        obj = Rule.objects.get(pk=1)
+    elif con == 2:
+        obj = Rule2.objects.get(pk=1)
 
     user = get_user_by_update(update)
     file = None
@@ -95,7 +105,12 @@ def rule(update, context):
 
 
 def contact(update, context):   
-    obj = About.objects.get(pk=1)
+    con = get_condition_by_update(update)
+    if con == 1:
+        obj = About.objects.get(pk=1)
+    elif con == 2:
+        obj = About2.objects.get(pk=1)
+
     user = get_user_by_update(update)
     if user.lang == 'uz':
         update.message.reply_text(obj.contact_uz, parse_mode=telegram.ParseMode.MARKDOWN)
@@ -105,8 +120,10 @@ def contact(update, context):
 
 def my_points(update, context):
     user = get_user_by_update(update)
+    con = get_condition_by_update(update)
+    user_point = user.point if con == 1 else user.point2
     # points = Request.objects.filter(user = user).values('user__name').annotate(p=Sum(F('point')*F('amount')))[0]['p']
-    msg = '<b>{}</b>: {}'.format(get_word('your points', update), user.point)
+    msg = '<b>{}</b>: {}'.format(get_word('your points', update), user_point)
     # msg += '\n\n👉 <a href="{}/statistic">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
     msg += '\n\n👉 <a href="{}">🔗{}</a> 👈'.format(config.URL, get_word('action results', update))
     i_top20 = InlineKeyboardButton(text=get_word('top20', update), callback_data='top20')
@@ -115,12 +132,15 @@ def my_points(update, context):
 def top20(update, context):
     bot = context.bot
     update = update.callback_query
+    con = get_condition_by_update(update)
     if update.data == 'top20':
         current_user  = get_user_by_update(update)
 
         # query_users = Bot_user.objects.all().annotate(total=F('point')).order_by('-total')
-
-        query_users = Bot_user.objects.all().exclude(phone=None).order_by('-total')
+        if con == 1:
+            query_users = Bot_user.objects.all().exclude(phone=None).order_by('-total')
+        else:
+            query_users = Bot_user.objects.all().exclude(phone=None).order_by('-total2')
         list_users = list(query_users.values_list('pk', flat=True))
         top20_list = query_users[:20]
         user_index = list_users.index(current_user.pk) + 1
@@ -137,8 +157,8 @@ def top20(update, context):
                 text += '3️⃣. '
             else:
                 text += '{}. '.format(n)
-    
-            text += '{}, {}, {};\n'.format(user.name, user.city, user.total)
+            user_total = user.total if con == 1 else user.total2
+            text += '{}, {}, {};\n'.format(user.name, user.city, user_total)
             if user == current_user:
                 text = '<u><b>{}</b></u>'.format(text)
             message += text
@@ -147,7 +167,8 @@ def top20(update, context):
         if user_index > 20:
             if user_index != 21:
                 message += '....\n'
-            message += '{}. {}, {}, {};'.format(user_index, current_user.name, current_user.city, current_user.total)
+            current_user_total = current_user.total if con == 1 else current_user.total2
+            message += '{}. {}, {}, {};'.format(user_index, current_user.name, current_user.city, current_user_total)
         
         update.message.reply_text(message, parse_mode = telegram.ParseMode.HTML)
 
