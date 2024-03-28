@@ -19,7 +19,6 @@
     <thead>
        <tr>
           <th>№</th>
-          <th>Товар</th>
           <th>Количество</th>
           <th>Фото 1</th>
           <th>Фото 2</th>
@@ -37,11 +36,7 @@
         {% endif %}
             <td>{{ forloop.counter }}</td>
 
-            
-            <td>
-                <a class="mt-2 btn btn-primary" style="background-color: rgb(20, 100, 204);" onclick="create_card({{ l.product|text_maker }}, '/files/{{ l.product.photo }}')" role="button"  data-toggle="tooltip" title=""><i style="color: antiquewhite;" class="fas fa-file-alt"></i></a>
-               
-            </td>
+         
             
             <td>{{ l.amount }}</td>
             <td><a href="/files/{{ l.photo }}" target="_blank">
@@ -53,7 +48,7 @@
             <td>{{ l.point }}</td>
             <td>{{ l.date|date:"d.m.Y H:i" }}</td>
             <td>
-               <a id = "a" href="{% url 'request_change_status' l.pk 'wait' %}" title="Возобновить" onclick="return confirm(&#39;Вы уверены возобновить запрос?&#39;)" 
+               <a id = "a" href="{% url 'request_change_status2' l.pk 'wait' %}" title="Возобновить" onclick="return confirm(&#39;Вы уверены возобновить запрос?&#39;)" 
                   class="btn btn-success rounded-pill mt-2"><i class="fas fa-undo" aria-hidden="true"></i></a>
 
             </td>
@@ -75,7 +70,7 @@
             <td></td>
             <td></td>
             <td><b>Обмен на призы</b></td>
-            <td>{{ bot_user.spent_for_prizes }}</td>
+            <td>{{ bot_user.spent_for_prizes2 }}</td>
          
          <tr>
 

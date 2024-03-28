@@ -9,8 +9,9 @@ from django.db.models import Count
 from django.contrib import messages
 
 from datetime import datetime, timedelta
-from app.models import *
-from app.forms import *
+from app2.models import *
+from app2.forms import *
+from app.models import Bot_user
 from django.db.models import Count, Sum, F, Q
 import pandas as pd
 

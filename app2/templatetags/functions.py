@@ -1,5 +1,5 @@
 from django import template
-from app.models import *
+from app2.models import Request as Request2
 from functions.bot import *
 
 
@@ -28,7 +28,7 @@ def text_maker(obj):
 @register.filter
 def overall_points(user):
     points = 0.0
-    for r in Request.objects.filter(user=user, status = 'conf'):
+    for r in Request2.objects.filter(user=user, status = 'conf'):
         points += r.point
 
     return points
@@ -37,9 +37,9 @@ def overall_points(user):
 @register.filter
 def added_points(user):
     points = 0.0
-    for r in Request.objects.filter(user=user, status = 'conf'):
+    for r in Request2.objects.filter(user=user, status = 'conf'):
         points += r.point
-    added = user.point + user.spent_for_prizes - points
+    added = user.point2 + user.spent_for_prizes2 - points
     return added
 
 

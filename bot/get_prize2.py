@@ -16,11 +16,11 @@ def select_prize(update, context):
         return ConversationHandler.END
     user = get_user_by_update(update)
     if user.lang == 'uz':
-        prize = Prize.objects.filter(title_uz = answer)[0]
+        prize = Prize2.objects.filter(title_uz = answer)[0]
         title = prize.title_uz
         description = prize.description_uz
     else: # ru
-        prize = Prize.objects.filter(title = answer)[0]
+        prize = Prize2.objects.filter(title = answer)[0]
         title = prize.title
         description = prize.description
 
@@ -35,9 +35,9 @@ def select_prize(update, context):
         bot.send_message(update.message.chat.id, caption, reply_markup = ReplyKeyboardMarkup(
             keyboard=[[get_word('next', update)], [get_word('back', update)]], resize_keyboard=True))
 
-    Prizewinner.objects.create(user = get_user_by_update(update), prize = prize)
+    Prizewinner2.objects.create(user = get_user_by_update(update), prize = prize)
 
-    return CONFIRM_PRIZE
+    return CONFIRM_PRIZE_NEW
 
 
 @is_start
@@ -46,15 +46,15 @@ def confirm_prize(update, context):
     answer = update.message.text
 
     if answer == get_word('back', update):
-        obj = Prizewinner.objects.get(user=get_user_by_update(update), status=None)
+        obj = Prizewinner2.objects.get(user=get_user_by_update(update), status=None)
         obj.delete()
         make_button_prizes(update, context)
-        return SELECT_PRIZE
+        return SELECT_PRIZE_NEW
     
     if answer == get_word('next', update):
         update.message.reply_text(get_word('type amount', update), 
             reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('back', update)]], resize_keyboard=True))
-        return SEND_AMOUNT_PRIZE
+        return SEND_AMOUNT_PRIZE_NEW
 
 @is_start
 def send_amount_prize(update, context):
@@ -62,7 +62,7 @@ def send_amount_prize(update, context):
     answer = update.message.text
 
     if answer == get_word('back', update):
-        obj = Prizewinner.objects.get(user=get_user_by_update(update), status = None)
+        obj = Prizewinner2.objects.get(user=get_user_by_update(update), status = None)
         user = get_user_by_update(update)
         if user.lang == 'uz':
             update.message.text = obj.prize.title_uz
@@ -71,9 +71,9 @@ def send_amount_prize(update, context):
 
         obj.delete()
         select_prize(update, context)
-        return CONFIRM_PRIZE
+        return CONFIRM_PRIZE_NEW
     
-    obj = Prizewinner.objects.get(user = get_user_by_update(update), status=None)
+    obj = Prizewinner2.objects.get(user = get_user_by_update(update), status=None)
     
     try:
         
@@ -97,7 +97,7 @@ def send_amount_prize(update, context):
     update.message.reply_text(get_word('are sure exchange points', update), reply_markup = 
         ReplyKeyboardMarkup(keyboard=[[get_word('yes', update), get_word('no', update)], [get_word('back', update)]], resize_keyboard=True))
 
-    return CONFIRM_EXCHANGE
+    return CONFIRM_EXCHANGE_NEW
 
 
 @is_start
@@ -108,9 +108,9 @@ def confirm_exchange(update, context):
     if answer == get_word('back', update):
         update.message.reply_text(get_word('type amount of products', update), 
             reply_markup = ReplyKeyboardMarkup(keyboard=[[get_word('back', update)]], resize_keyboard=True))
-        return SEND_AMOUNT_PRIZE    
+        return SEND_AMOUNT_PRIZE_NEW
     
-    obj = Prizewinner.objects.get(user = get_user_by_update(update), status=None)
+    obj = Prizewinner2.objects.get(user = get_user_by_update(update), status=None)
     user = get_user_by_update(update)
     if answer == get_word('yes', update):
         update.message.reply_text(get_word('completed getting prize', update))
