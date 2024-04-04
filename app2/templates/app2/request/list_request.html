@@ -65,8 +65,11 @@
                   <div class="tooltip-inner">Принять</div>
                </div> -->
 
-
-               <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'request_change_status2' l.pk 'cancel' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a>
+               <button type="button"  class="mt-2 btn btn-danger"
+                  data-toggle="modal" data-target="#cancel{{ l.pk }}Modal">
+                  <i class="fas fa-times-circle"></i>
+               </button>
+               <!-- <a class="mt-2 btn btn-primary" style="background-color: rgb(163, 26, 26);" href="{% url 'request_change_status2' l.pk 'cancel' %}" role="button" onclick="return confirm(&#39;Вы уверены?&#39;)"  data-toggle="tooltip" title="Отменить"><i class="fas fa-times-circle"></i></a> -->
                <!-- <div class="tooltip bs-tooltip-top" role="tooltip">
                   <div class="arrow"></div>
                   <div class="tooltip-inner">Отменить</div>
@@ -76,7 +79,7 @@
        </tr>
 
 
-                       <!-- Modal -->
+                       <!-- Modal confirm -->
                        <div class="modal fade" id="confirm{{ l.pk }}Modal" tabindex="-1" role="dialog" aria-labelledby="confirm{{ l.pk }}ModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
@@ -106,6 +109,38 @@
                         </div>
                      </div>
 
+
+
+
+                       <!-- Modal cancel -->
+                       <div class="modal fade" id="cancel{{ l.pk }}Modal" tabindex="-1" role="dialog" aria-labelledby="cancel{{ l.pk }}ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="cancel{{ l.pk }}ModalLabel">
+                                    {{ l.user.name }} - Отмена запроса
+                                 </h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <form action="{% url 'request_change_status2' l.pk 'cancel' %}" method="get">
+                                  {% csrf_token %}
+                                  <div class="modal-body">
+                                    <label for="message{{ l.pk }}">
+                                       Сообщение:
+                                    </label>
+                                    <textarea class="form-control" name="message" id="message{{ l.pk }}" cols="30" rows="5"></textarea>
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="submit" class="btn btn-danger" >Подтверждать</button>
+                                  </div>
+    
+                              </form>
+                           </div>
+                        </div>
+                     </div>
 
        {% endfor %}
     </tbody>

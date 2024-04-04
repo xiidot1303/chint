@@ -14,7 +14,6 @@ from functions.get_object import *
 from config import TELEGRAM_BOT_API_TOKEN
 import telegram
 
-
 @login_required
 def request_list(request):
     requests = Request.objects.filter(status='wait').order_by('-pk')
@@ -25,10 +24,11 @@ def request_list(request):
 def request_change_status(request, pk, status):
     obj = Request.objects.get(pk=pk)
     if request.method == 'POST':
-        r_point = request.POST['point']
-        obj.point = float(r_point)
-        obj.save()
-    
+        if 'point' in request.POST: 
+            r_point = request.POST['point']
+            obj.point = float(r_point)
+            obj.save()
+
     about = About.objects.get(pk=1)
     user = obj.user
     point = 0
@@ -57,8 +57,13 @@ def request_change_status(request, pk, status):
     """.format(
         text_point = get_string('point', user), point = point,
     )
-
     bot.sendMessage(chat_id = user.user_id, text=message, parse_mode = telegram.ParseMode.HTML)
+
+    if 'message' in request.GET:
+        message = request.GET['message']
+        bot.sendMessage(chat_id = user.user_id, text=message, parse_mode = telegram.ParseMode.HTML)
+
+
     #####
 
     return redirect(request_list)
