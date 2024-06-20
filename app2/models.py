@@ -18,6 +18,8 @@ class About(models.Model):
     action = models.TextField(null=True, blank=True, max_length=500)
     file_ru = models.FileField(upload_to='about', null=True, blank=True)
     file_uz = models.FileField(upload_to='about', null=True, blank=True)
+    file_id_ru = models.CharField(null=True, blank=True, max_length=255)
+    file_id_uz = models.CharField(null=True, blank=True, max_length=255)
     contact_ru = models.TextField(null=True, blank=True, max_length=500)
     contact_uz = models.TextField(null=True, blank=True, max_length=500)
     telegram_username = models.CharField(null=True, blank=True, max_length=200)

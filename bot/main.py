@@ -52,9 +52,11 @@ def info(update, context):
     # *args, file_type = str(obj.file).split('.')
     user = get_user_by_update(update)
     if user.lang == 'uz':
-        file = open('files/{}'.format(str(obj.file_uz)), 'rb')
+        # file = open('files/{}'.format(str(obj.file_uz)), 'rb')
+        file = obj.file_id_uz
     else:
-        file = open('files/{}'.format(str(obj.file_ru)), 'rb')
+        # file = open('files/{}'.format(str(obj.file_ru)), 'rb')
+        file = obj.file_id_ru
 
     try:
         try:
