@@ -43,7 +43,10 @@ def send_photo(update, context):
 
     photo_id = bot.getFile(update.message.photo[-1].file_id)
     *args, file_name = str(photo_id.file_path).split('/')
-    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    name, extension = file_name.split('.')
+    random_file_name = generate_random_file_name()
+    new_file_name = f"{random_file_name}.{extension}"
+    d_photo = photo_id.download('files/photos/requests/{}'.format(new_file_name))
     obj.photo = str(d_photo).replace('files/', '')
     obj.save()
     
@@ -78,7 +81,10 @@ def send_photo2(update, context):
 
     photo_id = bot.getFile(update.message.photo[-1].file_id)
     *args, file_name = str(photo_id.file_path).split('/')
-    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    name, extension = file_name.split('.')
+    random_file_name = generate_random_file_name()
+    new_file_name = f"{random_file_name}.{extension}"
+    d_photo = photo_id.download('files/photos/requests/{}'.format(new_file_name))
     obj.photo2 = str(d_photo).replace('files/', '')
     obj.save()
 
@@ -113,7 +119,10 @@ def send_photo3(update, context):
     obj = Request2.objects.get(user = get_user_by_update(update), status=None)
     photo_id = bot.getFile(update.message.photo[-1].file_id)
     *args, file_name = str(photo_id.file_path).split('/')
-    d_photo = photo_id.download('files/photos/requests/{}'.format(file_name))
+    name, extension = file_name.split('.')
+    random_file_name = generate_random_file_name()
+    new_file_name = f"{random_file_name}.{extension}"
+    d_photo = photo_id.download('files/photos/requests/{}'.format(new_file_name))
     obj.photo3 = str(d_photo).replace('files/', '')
     obj.save()
 

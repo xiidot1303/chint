@@ -6,6 +6,8 @@ from app2.models import Prize as Prize2
 from telegram.ext import ConversationHandler
 from datetime import date, datetime
 from bot.conversationList import *
+import random
+import string
 
 def main_menu(update, context):
     try:
@@ -99,3 +101,7 @@ def check_username(update):
 def get_condition_by_update(update):
     user = get_user_by_update(update)
     return user.condition
+
+def generate_random_file_name(length = 12):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for i in range(length))
